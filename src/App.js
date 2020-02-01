@@ -1,13 +1,19 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router';
 
-let john = 'blah';
+// Components
+import Navigation from './Components/Navigation';
+
+// Material UI
+import 'typeface-roboto';
 
 function App() {
   return (
-    <div className="App">
-      <div className="h1">{john}</div>
-    </div>
+    <BrowserRouter>
+      <Navigation />
+      <Router />
+    </BrowserRouter>
   );
 }
 
