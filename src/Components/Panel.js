@@ -3,12 +3,12 @@ import React from 'react';
 // Material UI
 import 'typeface-roboto';
 
-function Landing() {
+function Panel() {
   return (
     <div>
-      <div>Landing</div>
+      <div>Panel</div>
     </div>
   );
 }
 
-export default Landing;
+export default Panel;
