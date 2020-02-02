@@ -2,7 +2,7 @@ import React from 'react';
 
 class Classes extends React.Component {
   state = {
-    sections: []
+    section: null
   };
 
   componentDidMount() {
@@ -10,20 +10,28 @@ class Classes extends React.Component {
   }
 
   async fetchClasses() {
-    const url = 'http://localhost/adminClasses';
-    const response = await fetch(url);
-    const data = await response.json();
-    const sectionData = data.map(section => ({
-      id: section.class_id,
-      name: section.class_name,
-      date: section.date,
-      startTime: section.start_time,
-      endTime: section.end_time
-    }));
-    console.log(sectionData);
+    try {
+      const url = 'http://localhost:80/adminEditClass';
+      const response = await fetch(url);
+      const data = await response.json();
+      // console.log(data);
+      const sectionData = data.classes.map(section => ({
+        id: section.class_id,
+        name: section.class_name,
+        description: section.description,
+        date: section.date,
+        startTime: section.start_time,
+        endTime: section.end_time
+      }));
+      this.setState({ section: sectionData });
+      // console.log(sectionData);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
+    console.log(this.state.section);
     return (
       <div>
         <div>Classes</div>
