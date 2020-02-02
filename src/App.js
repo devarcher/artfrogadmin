@@ -12,7 +12,7 @@ import 'typeface-roboto';
 
 class App extends React.Component {
   state = {
-    loggedIn: false
+    loggedIn: true
   };
 
   // Login Page Login Handler
@@ -29,7 +29,7 @@ class App extends React.Component {
     const { loggedIn } = this.state;
     return (
       <BrowserRouter>
-        <Navigation />
+        <Navigation loggedIn={loggedIn} />
         {loggedIn ? (
           <Panel logOutHandler={this.logOutHandler} />
         ) : (
