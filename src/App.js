@@ -5,14 +5,13 @@ import Router from './Router';
 // Components
 import Navigation from './Components/Navigation';
 import Login from './Components/Login';
-import Panel from './Components/Panel';
 
 // Material UI
 import 'typeface-roboto';
 
 class App extends React.Component {
   state = {
-    loggedIn: false
+    loggedIn: true
   };
 
   // Login Page Login Handler

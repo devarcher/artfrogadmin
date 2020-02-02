@@ -6,7 +6,7 @@ import 'typeface-roboto';
 function Panel() {
   return (
     <div>
-      <div>Landing</div>
+      <div>Panel</div>
     </div>
   );
 }
