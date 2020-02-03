@@ -3,9 +3,17 @@ import TeacherCard from './TeacherCard';
 
 // Material UI
 import { Grid, Typography, CssBaseline } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  teacherItem: {
+    listStyle: 'none'
+  }
+});
 
 const EditTeachers = props => {
-  const { teachers } = props;
+  const { teachers, isInEditMode } = props;
+  const classes = useStyles();
 
   return (
     <div>
@@ -22,11 +30,12 @@ const EditTeachers = props => {
               Edit Teachers
             </Typography>
           </Grid>
+
           <Grid item>
             <ul>
               {teachers.map(teacher => (
-                <li key={teacher.id}>
-                  <TeacherCard teachers={teacher} />
+                <li key={teacher.id} className={classes.teacherItem}>
+                  <TeacherCard teachers={teacher} isInEditMode={isInEditMode} />
                 </li>
               ))}
             </ul>

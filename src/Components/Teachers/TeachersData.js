@@ -3,7 +3,8 @@ import EditTeachers from './EditTeachers';
 
 class TeachersData extends React.Component {
   state = {
-    teachers: []
+    teachers: [],
+    isInEditMode: false
   };
 
   componentDidMount() {
@@ -30,11 +31,11 @@ class TeachersData extends React.Component {
   }
 
   render() {
-    const { teachers } = this.state;
+    const { teachers, isInEditMode } = this.state;
     // console.log('in render: ', teachers);
     return (
       <div>
-        <EditTeachers teachers={teachers} />
+        <EditTeachers teachers={teachers} isInEditMode={isInEditMode} />
       </div>
     );
   }
