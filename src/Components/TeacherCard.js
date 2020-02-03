@@ -1,11 +1,10 @@
 import React from 'react';
 
 const TeacherCard = props => {
-  const { teachers } = this.props;
+  const { teachers } = props;
 
-  console.log('teacherCard:', teachers);
-
-  return <div>this is teacher card</div>;
+  // console.log('in teacherCard: ', teachers);
+  return <div>{teachers.first_name}</div>;
 };
 
 export default TeacherCard;

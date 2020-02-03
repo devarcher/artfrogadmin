@@ -1,7 +1,7 @@
 import React from 'react';
-import TeacherCard from './TeacherCard';
+import EditTeachers from './EditTeachers';
 
-class Teachers extends React.Component {
+class TeachersData extends React.Component {
   state = {
     teachers: []
   };
@@ -22,7 +22,7 @@ class Teachers extends React.Component {
         last_name: teacher.last_name,
         bio: teacher.bio
       }));
-      console.log(teacherData);
+      // console.log(teacherData);
       this.setState({ teachers: teacherData });
     } catch (err) {
       console.log(err);
@@ -31,17 +31,13 @@ class Teachers extends React.Component {
 
   render() {
     const { teachers } = this.state;
-    console.log('in render: ', teachers);
+    // console.log('in render: ', teachers);
     return (
       <div>
-        <ul>
-          {teachers.map(teacher => (
-            <li key={teacher.id}>{teacher.first_name}</li>
-          ))}
-        </ul>
+        <EditTeachers teachers={teachers} />
       </div>
     );
   }
 }
 
-export default Teachers;
+export default TeachersData;
