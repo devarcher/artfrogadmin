@@ -36,6 +36,7 @@ const Router = () => {
       <ProtectedRoute path="/panel/classes" component={Classes} />
       <ProtectedRoute path="/panel/students" component={Students} />
       <ProtectedRoute path="/panel/teachers" component={TeachersData} />
+      <Route path="/panel/*" component={() => '404 Not Found'} />
     </Switch>
   );
 };

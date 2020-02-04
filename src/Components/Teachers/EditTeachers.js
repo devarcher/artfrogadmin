@@ -6,6 +6,9 @@ import { Grid, Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  wrapper: {
+    width: '100vw'
+  },
   teacherItem: {
     listStyle: 'none',
     border: '1px solid green'
@@ -19,21 +22,27 @@ const EditTeachers = props => {
   return (
     <div>
       <CssBaseline>
-        <Grid container>
-          <Grid item>
+        <Grid
+          container
+          className={classes.wrapper}
+          display="flex"
+          direction="column"
+        >
+          <Grid item align="center">
             <Typography container="h1" variant="h4">
               Edit Teachers
             </Typography>
           </Grid>
 
-          <Grid item>
-            <ul>
-              {teachers.map(teacher => (
-                <li key={teacher.id} className={classes.teacherItem}>
-                  <TeacherCard teachers={teacher} isInEditMode={isInEditMode} />
-                </li>
-              ))}
-            </ul>
+          <Grid item align="center">
+            {teachers.map(teacher => (
+              <TeacherCard
+                key={teacher.id}
+                className={classes.teacherItem}
+                teachers={teacher}
+                isInEditMode={isInEditMode}
+              />
+            ))}
           </Grid>
         </Grid>
       </CssBaseline>
