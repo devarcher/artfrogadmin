@@ -27,6 +27,7 @@ const EditTeachers = props => {
           className={classes.wrapper}
           display="flex"
           direction="column"
+          spacing={4}
         >
           <Grid item align="center">
             <Typography container="h1" variant="h4">
