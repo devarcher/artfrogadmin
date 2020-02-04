@@ -5,7 +5,7 @@ class Auth {
 
   login(cb) {
     this.authenticated = true;
-    console.log('auth.js login()')
+    console.log('auth.js login()');
     cb();
   }
 

@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   teacherItem: {
-    listStyle: 'none'
+    listStyle: 'none',
+    border: '1px solid green'
   }
 });
 
@@ -18,13 +19,7 @@ const EditTeachers = props => {
   return (
     <div>
       <CssBaseline>
-        <Grid
-          container
-          spacing={2}
-          display="flex"
-          direction="column"
-          align="center"
-        >
+        <Grid container>
           <Grid item>
             <Typography container="h1" variant="h4">
               Edit Teachers

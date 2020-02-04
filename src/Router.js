@@ -1,5 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
+
+// Auth
+import auth from './Components/Auth/Auth';
 
 // Components
 import Login from './Components/Auth/Login';
@@ -9,15 +12,30 @@ import Students from './Components/Students/Students';
 import TeachersData from './Components/Teachers/TeachersData';
 import Panel from './Components/Panel';
 
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        auth.isAuthenticated() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/admin" />
+        )
+      }
+    />
+  );
+};
+
 const Router = () => {
   return (
     <Switch>
       <Route path="/admin/" component={Login} />
-      <Route exact path="/panel" component={Panel} />
-      <Route path="/panel/board" component={Board} />
-      <Route path="/panel/classes" component={Classes} />
-      <Route path="/panel/students" component={Students} />
-      <Route path="/panel/teachers" component={TeachersData} />
+      <ProtectedRoute exact path="/panel" component={Panel} />
+      <ProtectedRoute path="/panel/board" component={Board} />
+      <ProtectedRoute path="/panel/classes" component={Classes} />
+      <ProtectedRoute path="/panel/students" component={Students} />
+      <ProtectedRoute path="/panel/teachers" component={TeachersData} />
     </Switch>
   );
 };
