@@ -4,7 +4,13 @@ import EditTeachers from './EditTeachers';
 class TeachersData extends React.Component {
   state = {
     teachers: [],
-    isInEditMode: false
+    isInEditMode: false,
+    isExpanded: false
+  };
+
+  isExpandedToggle = e => {
+    e.preventDefault();
+    this.setState({ isExpanded: !this.state.isExpanded });
   };
 
   componentDidMount() {
@@ -31,11 +37,15 @@ class TeachersData extends React.Component {
   }
 
   render() {
-    const { teachers, isInEditMode } = this.state;
+    const { teachers, isInEditMode, isExpanded } = this.state;
     // console.log('in render: ', teachers);
     return (
       <div>
-        <EditTeachers teachers={teachers} isInEditMode={isInEditMode} />
+        <EditTeachers
+          teachers={teachers}
+          isInEditMode={isInEditMode}
+          isExpanded={isExpanded}
+        />
       </div>
     );
   }

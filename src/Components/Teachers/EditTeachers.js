@@ -29,7 +29,7 @@ const EditTeachers = props => {
           direction="column"
           spacing={4}
         >
-          <Grid item align="center">
+          <Grid item align="flex-start">
             <Typography variant="h3">Edit Teachers</Typography>
           </Grid>
 
