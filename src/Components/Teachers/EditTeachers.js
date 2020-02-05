@@ -30,9 +30,7 @@ const EditTeachers = props => {
           spacing={4}
         >
           <Grid item align="center">
-            <Typography container="h1" variant="h4">
-              Edit Teachers
-            </Typography>
+            <Typography variant="h3">Edit Teachers</Typography>
           </Grid>
 
           <Grid item align="center">

@@ -7,12 +7,14 @@ import {
   Button,
   Box
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles({
   card: {
     padding: '5px',
-    marginBottom: '10px'
+    marginBottom: '45px'
   },
   form: {
     display: 'flex',
@@ -31,21 +33,35 @@ const TeacherCard = props => {
           <Card className={classes.card}>
             <form className={classes.form} noValidate autoComplete="off">
               <Box
+                className={classes.cardTitle}
+                bgcolor="#BA829F"
+                borderRadius="8px"
+              >
+                <Typography variant="h4">
+                  {teachers.first_name} {teachers.last_name}
+                </Typography>
+              </Box>
+
+              <Box
                 p={1}
                 display="flex"
                 alignItems="center"
                 borderBottom="1px solid grey"
               >
                 <Box marginRight="10px">
-                  <Typography container="h3" variant="body1">
+                  <Typography variant="h6">
                     <strong>First Name: </strong>
                   </Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="left">
-                  <Typography>{teachers.first_name}</Typography>
+                  <Typography variant="h6">{teachers.first_name}</Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="right">
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                  >
                     Edit
                   </Button>
                 </Box>
@@ -58,17 +74,21 @@ const TeacherCard = props => {
                 borderBottom="1px solid grey"
               >
                 <Box marginRight="10px">
-                  <Typography container="h3" variant="body1">
+                  <Typography variant="h6">
                     <strong>Last Name: </strong>
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography flexGrow={1} textAlign="left">
+                  <Typography variant="h6" flexGrow={1} textAlign="left">
                     {teachers.last_name}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="right">
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                  >
                     Edit
                   </Button>
                 </Box>
@@ -81,23 +101,29 @@ const TeacherCard = props => {
                 borderBottom="1px solid grey"
               >
                 <Box marginRight="10px">
-                  <Typography container="h3" variant="body1">
+                  <Typography variant="h6">
                     <strong>Bio: </strong>
                   </Typography>
                 </Box>
-                <Box flexGrow={1} textAlign="left" padding={2}>
+                <Box variant="h6" flexGrow={1} textAlign="left" padding={4}>
                   <Typography>{teachers.bio}</Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="right">
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                  >
                     Edit
                   </Button>
                 </Box>
               </Box>
               <Box padding={2}>
                 <Button
+                  size="large"
                   variant="contained"
-                  color="primary"
+                  color="secondary"
+                  startIcon={<DeleteIcon />}
                   className={classes.deleteButton}
                 >
                   Delete {teachers.first_name} {teachers.last_name}
