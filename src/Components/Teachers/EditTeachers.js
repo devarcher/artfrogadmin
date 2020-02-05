@@ -16,7 +16,13 @@ const useStyles = makeStyles({
 });
 
 const EditTeachers = props => {
-  const { teachers, isInEditMode } = props;
+  const {
+    teachers,
+    isInEditMode,
+    changeEditMode,
+    onKeyUp,
+    saveEditedText
+  } = props;
   const classes = useStyles();
 
   return (
@@ -40,6 +46,9 @@ const EditTeachers = props => {
                 className={classes.teacherItem}
                 teachers={teacher}
                 isInEditMode={isInEditMode}
+                changeEditMode={changeEditMode}
+                onKeyUp={onKeyUp}
+                saveEditedText={saveEditedText}
               />
             ))}
           </Grid>
