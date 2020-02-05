@@ -40,7 +40,7 @@ const TeacherCard = props => {
         >
           <Box
             className={classes.cardTitle}
-            bgcolor="#BA829F"
+            bgcolor="rgba(186, 130, 159, .2)"
             borderRadius="8px"
             padding={3}
             display="flex"
