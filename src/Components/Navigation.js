@@ -74,7 +74,7 @@ function Navigation(props) {
               <Button
                 variant="outlined"
                 color="inherit"
-                onClick={() => logOutHandler(() => <Redirect to="/panel" />)}
+                onClick={() => logOutHandler(() => <Redirect to="/admin" />)}
               >
                 LOG OUT
               </Button>

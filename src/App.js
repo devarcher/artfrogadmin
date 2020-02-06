@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+  withRouter
+} from 'react-router-dom';
 
 // Components
 import Navigation from './Components/Navigation';
@@ -49,7 +55,11 @@ class App extends React.Component {
       <Route
         {...rest}
         render={props =>
-          props.isLoggedIn ? <Component {...props} /> : <Redirect to="/admin" />
+          this.state.isLoggedIn ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/admin" />
+          )
         }
       />
     );
@@ -68,7 +78,11 @@ class App extends React.Component {
             <Route
               path="/admin"
               render={props => (
-                <Login {...props} logInHandler={e => this.logInHandler(e)} />
+                <Login
+                  {...props}
+                  logInHandler={e => this.logInHandler(e)}
+                  isLoggedIn={isLoggedIn}
+                />
               )}
             />
             <this.ProtectedRoute exact path="/panel" component={Panel} />

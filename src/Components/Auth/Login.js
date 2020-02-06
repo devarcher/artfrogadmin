@@ -54,61 +54,65 @@ const Login = props => {
   return (
     <>
       <CssBaseline />
-      <div className={classes.mainBody}>
-        <form className="formBox">
-          <div>
-            <Grid
-              container
-              spacing={2}
-              direction="column"
-              alignItems="center"
-              justify="center"
-            >
-              <Grid item xs={12}>
-                <Avatar className={classes.avatar}>
-                  <LockOutlinedIcon />
-                </Avatar>
+      {isLoggedIn ? (
+        <Redirect to="/panel" />
+      ) : (
+        <div className={classes.mainBody}>
+          <form className="formBox">
+            <div>
+              <Grid
+                container
+                spacing={2}
+                direction="column"
+                alignItems="center"
+                justify="center"
+              >
+                <Grid item xs={12}>
+                  <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography component="h1" variant="h4">
+                    Log In
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <ThemeProvider theme={theme}>
+                    <TextField
+                      variant="outlined"
+                      label="User Name"
+                      name="username"
+                      className={classes.inputField}
+                    />
+                  </ThemeProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <ThemeProvider theme={theme}>
+                    <TextField
+                      variant="outlined"
+                      label="Password"
+                      name="password"
+                      className={classes.inputField}
+                    />
+                  </ThemeProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    color="primary"
+                    className={classes.subButton}
+                    onClick={e => logInHandler(e)}
+                  >
+                    Submit
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Typography component="h1" variant="h4">
-                  Log In
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <ThemeProvider theme={theme}>
-                  <TextField
-                    variant="outlined"
-                    label="User Name"
-                    name="username"
-                    className={classes.inputField}
-                  />
-                </ThemeProvider>
-              </Grid>
-              <Grid item xs={12}>
-                <ThemeProvider theme={theme}>
-                  <TextField
-                    variant="outlined"
-                    label="Password"
-                    name="password"
-                    className={classes.inputField}
-                  />
-                </ThemeProvider>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  className={classes.subButton}
-                  onClick={e => logInHandler(e)}
-                >
-                  Submit
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </form>
-      </div>
+            </div>
+          </form>
+        </div>
+      )}
     </>
   );
 };
