@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,6 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -47,7 +49,7 @@ const useStyles = makeStyles({
 });
 
 const Login = props => {
-  const { loginHandler } = props;
+  const { logInHandler, isLoggedIn } = props;
   const classes = useStyles();
   return (
     <>
@@ -98,9 +100,7 @@ const Login = props => {
                   type="submit"
                   color="primary"
                   className={classes.subButton}
-                  onClick={() =>
-                    loginHandler(() => props.history.push('/panel'))
-                  }
+                  onClick={e => logInHandler(e)}
                 >
                   Submit
                 </Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // Material UI stuff
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Navigation(props) {
-  const { isLoggedIn } = props;
+  const { isLoggedIn, logOutHandler } = props;
   const classes = useStyles();
 
   return (
@@ -71,7 +71,11 @@ function Navigation(props) {
                 </Link>
               </Typography>
 
-              <Button variant="outlined" color="inherit">
+              <Button
+                variant="outlined"
+                color="inherit"
+                onClick={() => logOutHandler(() => <Redirect to="/panel" />)}
+              >
                 LOG OUT
               </Button>
             </>
