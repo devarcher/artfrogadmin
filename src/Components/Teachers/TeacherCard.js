@@ -13,6 +13,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles({
   card: {
@@ -206,6 +207,7 @@ const TeacherCard = props => {
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
+                      multiline={true}
                       id="outlined-basic"
                       label="Bio"
                       variant="outlined"

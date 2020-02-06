@@ -1,9 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 
-// Auth
-import auth from './Components/Auth/Auth';
-
 // Components
 import Login from './Components/Auth/Login';
 import Board from './Components/Board/Board';
@@ -17,11 +14,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        auth.isAuthenticated() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/admin" />
-        )
+        props.isLoggedIn ? <Component {...props} /> : <Redirect to="/admin" />
       }
     />
   );
@@ -30,7 +23,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 const Router = () => {
   return (
     <Switch>
-      <Route path="/admin/" component={Login} />
+      <Route path="/admin" component={Login} />
       <ProtectedRoute exact path="/panel" component={Panel} />
       <ProtectedRoute path="/panel/board" component={Board} />
       <ProtectedRoute path="/panel/classes" component={Classes} />

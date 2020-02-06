@@ -25,12 +25,6 @@ class TeachersData extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onKeyUp = event => {;
-    if (event.keyCode === 27)
-      // 'ESC' key
-      this.changeEditMode();
-  };
-
   async fetchTeachers() {
     try {
       const url = 'http://localhost:80/adminEditTeacher';
@@ -59,7 +53,6 @@ class TeachersData extends React.Component {
           teachers={teachers}
           changeEditMode={this.changeEditMode}
           saveEditedText={this.saveEditedText}
-          onKeyUp={this.onKeyUp}
           inputHandler={this.inputHandler}
         />
       </div>

@@ -9,9 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-// Auth
-import auth from './Auth';
-
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -50,7 +47,7 @@ const useStyles = makeStyles({
 });
 
 const Login = props => {
-  const { logInHandler } = props;
+  const { loginHandler } = props;
   const classes = useStyles();
   return (
     <>
@@ -101,7 +98,9 @@ const Login = props => {
                   type="submit"
                   color="primary"
                   className={classes.subButton}
-                  onClick={() => auth.login(() => props.history.push('/panel'))}
+                  onClick={() =>
+                    loginHandler(() => props.history.push('/panel'))
+                  }
                 >
                   Submit
                 </Button>

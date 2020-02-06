@@ -14,6 +14,10 @@ import {
 import 'typeface-roboto';
 
 class App extends React.Component {
+  state = {
+    isLoggedIn: false
+  };
+
   theme = createMuiTheme({
     palette: {
       primary: {
@@ -26,11 +30,12 @@ class App extends React.Component {
   });
 
   render() {
+    const { isLoggedIn } = this.state;
     return (
       <BrowserRouter>
         <ThemeProvider theme={this.theme}>
-          <Navigation />
-          <Router />
+          <Navigation isLoggedIn={isLoggedIn} />
+          <Router isLoggedIn={isLoggedIn} />
         </ThemeProvider>
       </BrowserRouter>
     );

@@ -16,12 +16,7 @@ const useStyles = makeStyles({
 });
 
 const EditTeachers = props => {
-  const {
-    teachers,
-    onKeyUp,
-    saveEditedText,
-    inputHandler
-  } = props;
+  const { teachers, saveEditedText, inputHandler } = props;
   const classes = useStyles();
 
   return (
@@ -44,7 +39,6 @@ const EditTeachers = props => {
                 key={teacher.id}
                 className={classes.teacherItem}
                 teachers={teacher}
-                onKeyUp={onKeyUp}
                 saveEditedText={saveEditedText}
                 inputHandler={inputHandler}
               />

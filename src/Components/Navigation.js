@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Auth
-import auth from './Auth/Auth';
-
 // Material UI stuff
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -41,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Navigation(props) {
+  const { isLoggedIn } = props;
   const classes = useStyles();
 
   return (
@@ -50,32 +48,34 @@ function Navigation(props) {
           <Typography variant="h5" className={classes.title}>
             ArtFrog Academy
           </Typography>
-          <>
-            <Typography variant="h6">
-              <Link to="/panel/classes" className={classes.links}>
-                Classes
-              </Link>
-            </Typography>
-            <Typography variant="h6">
-              <Link to="/panel/students" className={classes.links}>
-                Students
-              </Link>
-            </Typography>
-            <Typography variant="h6">
-              <Link to="/panel/teachers" className={classes.links}>
-                Teachers
-              </Link>
-            </Typography>
-            <Typography variant="h6">
-              <Link to="/panel/board" className={classes.links}>
-                Board
-              </Link>
-            </Typography>
+          {isLoggedIn && (
+            <>
+              <Typography variant="h6">
+                <Link to="/panel/classes" className={classes.links}>
+                  Classes
+                </Link>
+              </Typography>
+              <Typography variant="h6">
+                <Link to="/panel/students" className={classes.links}>
+                  Students
+                </Link>
+              </Typography>
+              <Typography variant="h6">
+                <Link to="/panel/teachers" className={classes.links}>
+                  Teachers
+                </Link>
+              </Typography>
+              <Typography variant="h6">
+                <Link to="/panel/board" className={classes.links}>
+                  Board
+                </Link>
+              </Typography>
 
-            <Button variant="outlined" color="inherit">
-              LOG OUT
-            </Button>
-          </>
+              <Button variant="outlined" color="inherit">
+                LOG OUT
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </ThemeProvider>
