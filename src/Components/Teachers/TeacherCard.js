@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Typography,
   CssBaseline,
@@ -26,14 +26,18 @@ const useStyles = makeStyles({
 });
 
 const TeacherCard = props => {
-  const {
-    teachers,
-    isInEditMode,
-    changeEditMode,
-    onKeyUp,
-    saveEditedText
-  } = props;
+  const { teachers, saveEditedText, inputHandler } = props;
+
   const classes = useStyles();
+
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const toggleEditMode = () => setIsInEditMode(!isInEditMode);
+
+  const onKeyUp = event => {
+    if (event.keyCode === 27)
+      // 'ESC' key
+      toggleEditMode();
+  };
 
   return (
     <>
@@ -59,8 +63,8 @@ const TeacherCard = props => {
             </Box>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            {isInEditMode ? (
-              <form className={classes.form} noValidate autoComplete="off">
+            <form className={classes.form} noValidate autoComplete="off">
+              {isInEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -77,9 +81,11 @@ const TeacherCard = props => {
                       id="outlined-basic"
                       label="First Name"
                       variant="outlined"
+                      onChange={e => inputHandler(e)}
                       onKeyUp={event => onKeyUp(event)}
                       autoFocus={true}
                       value={teachers.first_name}
+                      name="teachers.first_name"
                     />
                   </Box>
                   <Box flexGrow={1} textAlign="right">
@@ -87,78 +93,13 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={changeEditMode}
+                      onClick={toggleEditMode}
                     >
                       Edit
                     </Button>
                   </Box>
                 </Box>
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Last Name: </strong>
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" flexGrow={1} textAlign="left">
-                      {teachers.last_name}
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={changeEditMode}
-                    >
-                      Edit
-                    </Button>
-                  </Box>
-                </Box>
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Bio: </strong>
-                    </Typography>
-                  </Box>
-                  <Box variant="h6" flexGrow={1} textAlign="left" padding={4}>
-                    <Typography>{teachers.bio}</Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={changeEditMode}
-                    >
-                      Edit
-                    </Button>
-                  </Box>
-                </Box>
-                <Box padding={2}>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={classes.deleteButton}
-                  >
-                    Delete {teachers.first_name} {teachers.last_name}
-                  </Button>
-                </Box>
-              </form>
-            ) : (
-              <form className={classes.form} noValidate autoComplete="off">
+              ) : (
                 <Box
                   p={1}
                   display="flex"
@@ -178,12 +119,50 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={changeEditMode}
+                      onClick={toggleEditMode}
                     >
                       Edit
                     </Button>
                   </Box>
                 </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>First Name: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      id="outlined-basic"
+                      label="Last Name"
+                      variant="outlined"
+                      onChange={e => inputHandler(e)}
+                      onKeyUp={event => onKeyUp(event)}
+                      autoFocus={true}
+                      value={teachers.last_name}
+                      name="teachers.last_name"
+                    />
+                  </Box>
+                  <Box flexGrow={1} textAlign="right">
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<EditIcon />}
+                      onClick={toggleEditMode}
+                    >
+                      Edit
+                    </Button>
+                  </Box>
+                </Box>
+              ) : (
                 <Box
                   p={1}
                   display="flex"
@@ -205,12 +184,50 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={changeEditMode}
+                      onClick={toggleEditMode}
                     >
                       Edit
                     </Button>
                   </Box>
                 </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Bio: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      id="outlined-basic"
+                      label="Bio"
+                      variant="outlined"
+                      onChange={e => inputHandler(e)}
+                      onKeyUp={event => onKeyUp(event)}
+                      autoFocus={true}
+                      value={teachers.bio}
+                      name="teachers.bio"
+                    />
+                  </Box>
+                  <Box flexGrow={1} textAlign="right">
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<EditIcon />}
+                      onClick={toggleEditMode}
+                    >
+                      Edit
+                    </Button>
+                  </Box>
+                </Box>
+              ) : (
                 <Box
                   p={1}
                   display="flex"
@@ -230,118 +247,13 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={changeEditMode}
+                      onClick={toggleEditMode}
                     >
                       Edit
                     </Button>
                   </Box>
                 </Box>
-                <Box padding={2}>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={classes.deleteButton}
-                  >
-                    Delete {teachers.first_name} {teachers.last_name}
-                  </Button>
-                </Box>
-              </form>
-            )}
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-
-        {/* <CssBaseline>
-        <Grid item xs={8}>
-          <Card className={classes.card}>
-            <form className={classes.form} noValidate autoComplete="off">
-              <Box
-                className={classes.cardTitle}
-                bgcolor="#BA829F"
-                borderRadius="8px"
-              >
-                <Typography variant="h4">
-                  {teachers.first_name} {teachers.last_name}
-                </Typography>
-              </Box>
-
-              <Box
-                p={1}
-                display="flex"
-                alignItems="center"
-                borderBottom="1px solid grey"
-              >
-                <Box marginRight="10px">
-                  <Typography variant="h6">
-                    <strong>First Name: </strong>
-                  </Typography>
-                </Box>
-                <Box flexGrow={1} textAlign="left">
-                  <Typography variant="h6">{teachers.first_name}</Typography>
-                </Box>
-                <Box flexGrow={1} textAlign="right">
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<EditIcon />}
-                  >
-                    Edit
-                  </Button>
-                </Box>
-              </Box>
-
-              <Box
-                p={1}
-                display="flex"
-                alignItems="center"
-                borderBottom="1px solid grey"
-              >
-                <Box marginRight="10px">
-                  <Typography variant="h6">
-                    <strong>Last Name: </strong>
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h6" flexGrow={1} textAlign="left">
-                    {teachers.last_name}
-                  </Typography>
-                </Box>
-                <Box flexGrow={1} textAlign="right">
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<EditIcon />}
-                  >
-                    Edit
-                  </Button>
-                </Box>
-              </Box>
-
-              <Box
-                p={1}
-                display="flex"
-                alignItems="center"
-                borderBottom="1px solid grey"
-              >
-                <Box marginRight="10px">
-                  <Typography variant="h6">
-                    <strong>Bio: </strong>
-                  </Typography>
-                </Box>
-                <Box variant="h6" flexGrow={1} textAlign="left" padding={4}>
-                  <Typography>{teachers.bio}</Typography>
-                </Box>
-                <Box flexGrow={1} textAlign="right">
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<EditIcon />}
-                  >
-                    Edit
-                  </Button>
-                </Box>
-              </Box>
+              )}
               <Box padding={2}>
                 <Button
                   size="large"
@@ -354,9 +266,8 @@ const TeacherCard = props => {
                 </Button>
               </Box>
             </form>
-          </Card>
-        </Grid>
-      </CssBaseline> */}
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </CssBaseline>
     </>
   );

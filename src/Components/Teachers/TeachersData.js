@@ -3,17 +3,13 @@ import EditTeachers from './EditTeachers';
 
 class TeachersData extends React.Component {
   state = {
-    teachers: [],
-    isInEditMode: false
+    teachers: []
   };
 
   componentDidMount() {
     this.fetchTeachers();
   }
 
-  changeEditMode = () => {
-    this.setState({ isInEditMode: !this.state.isInEditMode });
-  };
 
   saveEditedText = () => {
     // only allow it to be saved if the text isn't an empty string
@@ -25,10 +21,11 @@ class TeachersData extends React.Component {
     }
   };
 
-  onKeyUp = event => {
-    if (event.keyCode === 13)
-      // 'RETURN' key
-      return this.saveEditedText();
+  inputHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onKeyUp = event => {;
     if (event.keyCode === 27)
       // 'ESC' key
       this.changeEditMode();
@@ -61,9 +58,9 @@ class TeachersData extends React.Component {
         <EditTeachers
           teachers={teachers}
           changeEditMode={this.changeEditMode}
-          isInEditMode={isInEditMode}
           saveEditedText={this.saveEditedText}
           onKeyUp={this.onKeyUp}
+          inputHandler={this.inputHandler}
         />
       </div>
     );

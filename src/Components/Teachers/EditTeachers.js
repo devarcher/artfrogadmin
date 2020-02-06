@@ -18,10 +18,9 @@ const useStyles = makeStyles({
 const EditTeachers = props => {
   const {
     teachers,
-    isInEditMode,
-    changeEditMode,
     onKeyUp,
-    saveEditedText
+    saveEditedText,
+    inputHandler
   } = props;
   const classes = useStyles();
 
@@ -45,10 +44,9 @@ const EditTeachers = props => {
                 key={teacher.id}
                 className={classes.teacherItem}
                 teachers={teacher}
-                isInEditMode={isInEditMode}
-                changeEditMode={changeEditMode}
                 onKeyUp={onKeyUp}
                 saveEditedText={saveEditedText}
+                inputHandler={inputHandler}
               />
             ))}
           </Grid>
