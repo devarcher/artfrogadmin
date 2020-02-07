@@ -16,7 +16,7 @@ import 'typeface-roboto';
 
 class App extends React.Component {
   state = {
-    isLoggedIn: true
+    isLoggedIn: false
   };
 
   theme = createMuiTheme({
@@ -32,7 +32,6 @@ class App extends React.Component {
 
   logInHandler = e => {
     e.preventDefault();
-    console.log('inside loginHandler');
     this.setState({ isLoggedIn: true });
   };
 
@@ -40,7 +39,7 @@ class App extends React.Component {
     this.setState({ isLoggedIn: false });
   };
 
-  ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => {
+  ProtectedRoute = ({ component: Component, ...rest }) => {
     return (
       <Route
         {...rest}
