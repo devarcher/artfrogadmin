@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+
+import AppBarCollapse from './AppBarCollapse';
 
 // Material UI stuff
 import { makeStyles } from '@material-ui/core/styles';
@@ -50,34 +51,7 @@ function Navigation(props) {
           </Typography>
           {isLoggedIn && (
             <>
-              <Typography variant="h6">
-                <Link to="/panel/classes" className={classes.links}>
-                  Classes
-                </Link>
-              </Typography>
-              <Typography variant="h6">
-                <Link to="/panel/students" className={classes.links}>
-                  Students
-                </Link>
-              </Typography>
-              <Typography variant="h6">
-                <Link to="/panel/teachers" className={classes.links}>
-                  Teachers
-                </Link>
-              </Typography>
-              <Typography variant="h6">
-                <Link to="/panel/board" className={classes.links}>
-                  Board
-                </Link>
-              </Typography>
-
-              <Button
-                variant="outlined"
-                color="inherit"
-                onClick={() => logOutHandler(() => <Redirect to="/admin" />)}
-              >
-                LOG OUT
-              </Button>
+              <AppBarCollapse logOutHandler={logOutHandler} />
             </>
           )}
         </Toolbar>

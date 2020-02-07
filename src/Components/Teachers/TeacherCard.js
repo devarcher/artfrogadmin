@@ -50,34 +50,34 @@ const TeacherCard = props => {
   // bio: ''
   // }
   // onInputChange  = (e) => {
-  // 
+  //
   // }
 
   // function changeInitialState(){
 
-//   const INITIAL_STATE = {
-//      foo: '',
-//      bar: '',
-//      something: {
-//        name: 0
-//      }
-//   }
+  //   const INITIAL_STATE = {
+  //      foo: '',
+  //      bar: '',
+  //      something: {
+  //        name: 0
+  //      }
+  //   }
 
-//  const [state, setState] = useState({...INITIAL_STATE})
+  //  const [state, setState] = useState({...INITIAL_STATE})
 
-//  return <button onClick={() => {
-//      INITIAL_STATE.something.name = 'hello';
-//      console.log(state.something.name) // you will see the name has been updated as well
-//   }}></button>
+  //  return <button onClick={() => {
+  //      INITIAL_STATE.something.name = 'hello';
+  //      console.log(state.something.name) // you will see the name has been updated as well
+  //   }}></button>
 
-// }
+  // }
 
-    // const [teacherInfo, onInputChange] = useState({firstName: '', lastName: '', bio: ''})
-    // teacherInfo.firstName
+  // const [teacherInfo, onInputChange] = useState({firstName: '', lastName: '', bio: ''})
+  // teacherInfo.firstName
 
-  const [isInEditMode, toggleEditMode] = useState(false);
-  toggleEditMode(!isInEditMode);
-  
+  // const [isInEditMode, toggleEditMode] = useState(false);
+  // toggleEditMode(!isInEditMode);
+
   // First Name Edit State
   const [FirstNameEditMode, setFirstNameEditMode] = useState(false);
   const toggleFirstNameEditMode = () =>
