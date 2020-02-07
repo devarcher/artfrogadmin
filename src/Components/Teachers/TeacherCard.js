@@ -43,16 +43,16 @@ const TeacherCard = props => {
 
   const classes = useStyles();
 
-  // First Name State
+  // First Name Edit State
   const [FirstNameEditMode, setFirstNameEditMode] = useState(false);
   const toggleFirstNameEditMode = () =>
     setFirstNameEditMode(!FirstNameEditMode);
 
-  // Last Name State
+  // Last Name Edit State
   const [lastNameEditMode, setLastNameEditMode] = useState(false);
   const toggleLastNameEditMode = () => setLastNameEditMode(!lastNameEditMode);
 
-  // Bio State
+  // Bio Edit State
   const [bioEditMode, setBioEditMode] = useState(false);
   const toggleBioEditMode = () => setBioEditMode(!bioEditMode);
 

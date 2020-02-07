@@ -16,7 +16,7 @@ import 'typeface-roboto';
 
 class App extends React.Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   theme = createMuiTheme({
