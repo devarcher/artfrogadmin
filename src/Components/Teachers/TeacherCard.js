@@ -9,6 +9,8 @@ import {
 import { makeStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -23,6 +25,16 @@ const useStyles = makeStyles({
   form: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  bioSection: {
+    width: '85vw'
+  },
+  cancelButton: {
+    marginRight: '15px'
+  },
+  bioButton: {
+    width: '100px',
+    marginBottom: '5px'
   }
 });
 
@@ -31,13 +43,23 @@ const TeacherCard = props => {
 
   const classes = useStyles();
 
-  const [isInEditMode, setIsInEditMode] = useState(false);
-  const toggleEditMode = () => setIsInEditMode(!isInEditMode);
+  // First Name State
+  const [FirstNameEditMode, setFirstNameEditMode] = useState(false);
+  const toggleFirstNameEditMode = () =>
+    setFirstNameEditMode(!FirstNameEditMode);
+
+  // Last Name State
+  const [lastNameEditMode, setLastNameEditMode] = useState(false);
+  const toggleLastNameEditMode = () => setLastNameEditMode(!lastNameEditMode);
+
+  // Bio State
+  const [bioEditMode, setBioEditMode] = useState(false);
+  const toggleBioEditMode = () => setBioEditMode(!bioEditMode);
 
   const onKeyUp = event => {
-    if (event.keyCode === 27)
-      // 'ESC' key
-      toggleEditMode();
+    // if (event.keyCode === 27)
+    // 'ESC' key
+    // toggleEditMode();
   };
 
   return (
@@ -65,7 +87,7 @@ const TeacherCard = props => {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <form className={classes.form} noValidate autoComplete="off">
-              {isInEditMode ? (
+              {FirstNameEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -93,10 +115,19 @@ const TeacherCard = props => {
                     <Button
                       variant="outlined"
                       color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      startIcon={<CancelOutlinedIcon />}
+                      onClick={toggleFirstNameEditMode}
+                      className={classes.cancelButton}
                     >
-                      Edit
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<SaveAltIcon />}
+                      onClick={toggleFirstNameEditMode}
+                    >
+                      Save
                     </Button>
                   </Box>
                 </Box>
@@ -120,7 +151,7 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      onClick={toggleFirstNameEditMode}
                     >
                       Edit
                     </Button>
@@ -128,7 +159,7 @@ const TeacherCard = props => {
                 </Box>
               )}
 
-              {isInEditMode ? (
+              {lastNameEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -156,10 +187,19 @@ const TeacherCard = props => {
                     <Button
                       variant="outlined"
                       color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      className={classes.cancelButton}
+                      startIcon={<CancelOutlinedIcon />}
+                      onClick={toggleLastNameEditMode}
                     >
-                      Edit
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<SaveAltIcon />}
+                      onClick={toggleLastNameEditMode}
+                    >
+                      Save
                     </Button>
                   </Box>
                 </Box>
@@ -185,7 +225,7 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      onClick={toggleLastNameEditMode}
                     >
                       Edit
                     </Button>
@@ -193,12 +233,14 @@ const TeacherCard = props => {
                 </Box>
               )}
 
-              {isInEditMode ? (
+              {bioEditMode ? (
                 <Box
                   p={1}
                   display="flex"
                   alignItems="center"
                   borderBottom="1px solid grey"
+                  className={classes.bioBox}
+                  flexGrow={1}
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
@@ -208,6 +250,9 @@ const TeacherCard = props => {
                   <Box flexGrow={1} textAlign="left">
                     <TextField
                       multiline={true}
+                      rows={3}
+                      fullWidth
+                      className={classes.bioSection}
                       id="outlined-basic"
                       label="Bio"
                       variant="outlined"
@@ -222,10 +267,20 @@ const TeacherCard = props => {
                     <Button
                       variant="outlined"
                       color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      className={classes.bioButton}
+                      startIcon={<CancelOutlinedIcon />}
+                      onClick={toggleBioEditMode}
                     >
-                      Edit
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="secondary"
+                      className={classes.bioButton}
+                      startIcon={<SaveAltIcon />}
+                      onClick={toggleBioEditMode}
+                    >
+                      Save
                     </Button>
                   </Box>
                 </Box>
@@ -249,7 +304,7 @@ const TeacherCard = props => {
                       variant="outlined"
                       color="secondary"
                       startIcon={<EditIcon />}
-                      onClick={toggleEditMode}
+                      onClick={toggleBioEditMode}
                     >
                       Edit
                     </Button>
