@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Menu } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import HomeIcon from '@material-ui/icons/Home';
+import PaletteOutlinedIcon from '@material-ui/icons/PaletteOutlined';
 
 const styles = theme => ({
   buttonCollapse: {
@@ -36,7 +36,7 @@ class ButtonAppBarCollapse extends React.Component {
     return (
       <div className={classes.buttonCollapse}>
         <IconButton onClick={this.handleMenu}>
-          <HomeIcon />
+          <PaletteOutlinedIcon fontSize="large" htmlColor="white" />
         </IconButton>
         <Menu
           id="menu-appbar"
