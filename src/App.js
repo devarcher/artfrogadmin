@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-  withRouter
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 // Components
 import Navigation from './Components/Navigation';
@@ -17,11 +11,7 @@ import TeachersData from './Components/Teachers/TeachersData';
 import Panel from './Components/Panel';
 
 // Material UI
-import {
-  makeStyles,
-  ThemeProvider,
-  createMuiTheme
-} from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import 'typeface-roboto';
 
 class App extends React.Component {

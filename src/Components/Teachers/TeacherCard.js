@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Typography,
   CssBaseline,
@@ -15,7 +16,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles({
   card: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
 });
 
 const TeacherCard = props => {
-  const { teachers, saveEditedText, inputHandler } = props;
+  const { teachers, inputHandler } = props;
 
   const classes = useStyles();
 

@@ -10,16 +10,15 @@ class TeachersData extends React.Component {
     this.fetchTeachers();
   }
 
-
-  saveEditedText = () => {
-    // only allow it to be saved if the text isn't an empty string
-    if (this.refs.editText.value.length > 0) {
-      this.setState({
-        isInEditMode: false
-      });
-      this.props.updateText(this.refs.editText.value, this.props.index);
-    }
-  };
+  // saveEditedText = () => {
+  //   // only allow it to be saved if the text isn't an empty string
+  //   if (this.refs.editText.value.length > 0) {
+  //     this.setState({
+  //       isInEditMode: false
+  //     });
+  //     this.props.updateText(this.refs.editText.value, this.props.index);
+  //   }
+  // };
 
   inputHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -45,7 +44,7 @@ class TeachersData extends React.Component {
   }
 
   render() {
-    const { teachers, changeEditMode, isInEditMode } = this.state;
+    const { teachers } = this.state;
     // console.log('in render: ', teachers);
     return (
       <div>
