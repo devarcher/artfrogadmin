@@ -56,12 +56,6 @@ const TeacherCard = props => {
   const [bioEditMode, setBioEditMode] = useState(false);
   const toggleBioEditMode = () => setBioEditMode(!bioEditMode);
 
-  const onKeyUp = event => {
-    // if (event.keyCode === 27)
-    // 'ESC' key
-    // toggleEditMode();
-  };
-
   return (
     <>
       <CssBaseline>
@@ -101,13 +95,10 @@ const TeacherCard = props => {
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      id="outlined-basic"
                       label="First Name"
                       variant="outlined"
-                      onChange={e => inputHandler(e)}
-                      onKeyUp={event => onKeyUp(event)}
                       autoFocus={true}
-                      value={teachers.first_name}
+                      placeholder={teachers.first_name}
                       name="teachers.first_name"
                     />
                   </Box>
@@ -173,13 +164,10 @@ const TeacherCard = props => {
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      id="outlined-basic"
                       label="Last Name"
                       variant="outlined"
                       onChange={e => inputHandler(e)}
-                      onKeyUp={event => onKeyUp(event)}
                       autoFocus={true}
-                      value={teachers.last_name}
                       name="teachers.last_name"
                     />
                   </Box>
@@ -253,13 +241,10 @@ const TeacherCard = props => {
                       rows={3}
                       fullWidth
                       className={classes.bioSection}
-                      id="outlined-basic"
                       label="Bio"
                       variant="outlined"
                       onChange={e => inputHandler(e)}
-                      onKeyUp={event => onKeyUp(event)}
                       autoFocus={true}
-                      value={teachers.bio}
                       name="teachers.bio"
                     />
                   </Box>
