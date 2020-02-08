@@ -18,23 +18,12 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
-  card: {
-    padding: '5px',
-    marginBottom: '45px'
-  },
   form: {
-    display: 'flex',
-    flexDirection: 'column',
+    width: '100%'
   },
-  bioSection: {
-    width: '85vw'
-  },
-  cancelButton: {
-    marginRight: '15px'
-  },
-  bioButton: {
-    width: '100px',
-    marginBottom: '5px'
+  button: {
+    marginBottom: '15px',
+    width: '300px'
   }
 });
 
@@ -79,17 +68,8 @@ const TeacherCard = props => {
   // toggleEditMode(!isInEditMode);
 
   // First Name Edit State
-  const [FirstNameEditMode, setFirstNameEditMode] = useState(false);
-  const toggleFirstNameEditMode = () =>
-    setFirstNameEditMode(!FirstNameEditMode);
-
-  // Last Name Edit State
-  const [lastNameEditMode, setLastNameEditMode] = useState(false);
-  const toggleLastNameEditMode = () => setLastNameEditMode(!lastNameEditMode);
-
-  // Bio Edit State
-  const [bioEditMode, setBioEditMode] = useState(false);
-  const toggleBioEditMode = () => setBioEditMode(!bioEditMode);
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
 
   return (
     <>
@@ -114,9 +94,9 @@ const TeacherCard = props => {
               </Typography>
             </Box>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails display="flex" justifyItems="center">
             <form className={classes.form} noValidate autoComplete="off">
-              {FirstNameEditMode ? (
+              {isInEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -137,25 +117,6 @@ const TeacherCard = props => {
                       name="teachers.first_name"
                     />
                   </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<CancelOutlinedIcon />}
-                      onClick={toggleFirstNameEditMode}
-                      className={classes.cancelButton}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<SaveAltIcon />}
-                      onClick={toggleFirstNameEditMode}
-                    >
-                      Save
-                    </Button>
-                  </Box>
                 </Box>
               ) : (
                 <Box
@@ -172,20 +133,10 @@ const TeacherCard = props => {
                   <Box flexGrow={1} textAlign="left">
                     <Typography variant="h6">{teachers.first_name}</Typography>
                   </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleFirstNameEditMode}
-                    >
-                      Edit
-                    </Button>
-                  </Box>
                 </Box>
               )}
 
-              {lastNameEditMode ? (
+              {isInEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -206,25 +157,6 @@ const TeacherCard = props => {
                       name="teachers.last_name"
                     />
                   </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className={classes.cancelButton}
-                      startIcon={<CancelOutlinedIcon />}
-                      onClick={toggleLastNameEditMode}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<SaveAltIcon />}
-                      onClick={toggleLastNameEditMode}
-                    >
-                      Save
-                    </Button>
-                  </Box>
                 </Box>
               ) : (
                 <Box
@@ -243,20 +175,10 @@ const TeacherCard = props => {
                       {teachers.last_name}
                     </Typography>
                   </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleLastNameEditMode}
-                    >
-                      Edit
-                    </Button>
-                  </Box>
                 </Box>
               )}
 
-              {bioEditMode ? (
+              {isInEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -274,7 +196,7 @@ const TeacherCard = props => {
                     <TextField
                       multiline={true}
                       rows={3}
-                      fullWidth
+                      fullWidth={true}
                       className={classes.bioSection}
                       label="Bio"
                       variant="outlined"
@@ -283,32 +205,13 @@ const TeacherCard = props => {
                       name="teachers.bio"
                     />
                   </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className={classes.bioButton}
-                      startIcon={<CancelOutlinedIcon />}
-                      onClick={toggleBioEditMode}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      className={classes.bioButton}
-                      startIcon={<SaveAltIcon />}
-                      onClick={toggleBioEditMode}
-                    >
-                      Save
-                    </Button>
-                  </Box>
                 </Box>
               ) : (
                 <Box
                   p={1}
                   display="flex"
-                  alignItems="center"
+                  flexDirection="column"
+                  alignItems="flex-start"
                   borderBottom="1px solid grey"
                 >
                   <Box marginRight="10px">
@@ -316,32 +219,63 @@ const TeacherCard = props => {
                       <strong>Bio: </strong>
                     </Typography>
                   </Box>
-                  <Box variant="h6" flexGrow={1} textAlign="left" padding={4}>
+                  <Box variant="h6" flexGrow={1} textAlign="left" padding={1}>
                     <Typography>{teachers.bio}</Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="right">
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<EditIcon />}
-                      onClick={toggleBioEditMode}
-                    >
-                      Edit
-                    </Button>
                   </Box>
                 </Box>
               )}
-              <Box padding={2}>
-                <Button
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-                  startIcon={<DeleteIcon />}
-                  className={classes.deleteButton}
-                >
-                  Delete {teachers.first_name} {teachers.last_name}
-                </Button>
-              </Box>
+              {isInEditMode ? (
+                <Box padding={2} display="flex" flexDirection="column">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<CancelOutlinedIcon />}
+                    onClick={toggleIsInEditMode}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<SaveAltIcon />}
+                    onClick={toggleIsInEditMode}
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                    className={classes.button}
+                  >
+                    Delete {teachers.first_name} {teachers.last_name}
+                  </Button>
+                </Box>
+              ) : (
+                <Box padding={2} display="flex" flexDirection="column">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<EditIcon />}
+                    onClick={toggleIsInEditMode}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                    className={classes.button}
+                  >
+                    Delete {teachers.first_name} {teachers.last_name}
+                  </Button>
+                </Box>
+              )}
             </form>
           </ExpansionPanelDetails>
         </ExpansionPanel>
