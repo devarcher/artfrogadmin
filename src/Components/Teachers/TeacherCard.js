@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   button: {
     marginBottom: '15px',
-    width: '300px'
+    width: '240px'
   }
 });
 
@@ -64,10 +64,7 @@ const TeacherCard = props => {
   // const [teacherInfo, onInputChange] = useState({firstName: '', lastName: '', bio: ''})
   // teacherInfo.firstName
 
-  // const [isInEditMode, toggleEditMode] = useState(false);
-  // toggleEditMode(!isInEditMode);
-
-  // First Name Edit State
+  // Edit State
   const [isInEditMode, setIsInEditMode] = useState(false);
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
 

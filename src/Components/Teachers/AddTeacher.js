@@ -14,16 +14,12 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
-  card: {
-    padding: '5px',
-    marginBottom: '45px'
-  },
   form: {
-    display: 'flex',
-    flexDirection: 'column'
+    width: '100%'
   },
-  bioSection: {
-    width: '90vw'
+  button: {
+    marginBottom: '15px',
+    width: '240px'
   }
 });
 
@@ -132,7 +128,7 @@ const AddTeacher = props => {
                   variant="contained"
                   color="secondary"
                   startIcon={<SaveAltIcon />}
-                  className={classes.deleteButton}
+                  className={classes.button}
                 >
                   Save New Teacher
                 </Button>
