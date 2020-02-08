@@ -28,45 +28,20 @@ const useStyles = makeStyles({
 });
 
 const TeacherCard = props => {
-  const { teachers, inputHandler } = props;
+  const { teachers } = props;
 
   const classes = useStyles();
-
-  // state = {
-  // isInEditMode: false,
-  // firstName: '',
-  // lastName: '',
-  // bio: ''
-  // }
-  // onInputChange  = (e) => {
-  //
-  // }
-
-  // function changeInitialState(){
-
-  //   const INITIAL_STATE = {
-  //      foo: '',
-  //      bar: '',
-  //      something: {
-  //        name: 0
-  //      }
-  //   }
-
-  //  const [state, setState] = useState({...INITIAL_STATE})
-
-  //  return <button onClick={() => {
-  //      INITIAL_STATE.something.name = 'hello';
-  //      console.log(state.something.name) // you will see the name has been updated as well
-  //   }}></button>
-
-  // }
-
-  // const [teacherInfo, onInputChange] = useState({firstName: '', lastName: '', bio: ''})
-  // teacherInfo.firstName
 
   // Edit State
   const [isInEditMode, setIsInEditMode] = useState(false);
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
+
+  // Teacher Info State
+  const [teacher, setTeacher] = useState({
+    first_name: teachers.first_name,
+    last_name: teachers.last_name,
+    bio: teachers.bio
+  });
 
   return (
     <>
@@ -110,8 +85,10 @@ const TeacherCard = props => {
                       label="First Name"
                       variant="outlined"
                       autoFocus={true}
-                      placeholder={teachers.first_name}
-                      name="teachers.first_name"
+                      value={teacher.first_name}
+                      onChange={e =>
+                        setTeacher({ ...teacher, first_name: e.target.value })
+                      }
                     />
                   </Box>
                 </Box>
@@ -149,9 +126,11 @@ const TeacherCard = props => {
                     <TextField
                       label="Last Name"
                       variant="outlined"
-                      onChange={e => inputHandler(e)}
                       autoFocus={true}
-                      name="teachers.last_name"
+                      value={teacher.last_name}
+                      onChange={e =>
+                        setTeacher({ ...teacher, last_name: e.target.value })
+                      }
                     />
                   </Box>
                 </Box>
@@ -197,9 +176,11 @@ const TeacherCard = props => {
                       className={classes.bioSection}
                       label="Bio"
                       variant="outlined"
-                      onChange={e => inputHandler(e)}
                       autoFocus={true}
-                      name="teachers.bio"
+                      value={teacher.bio}
+                      onChange={e =>
+                        setTeacher({ ...teacher, bio: e.target.value })
+                      }
                     />
                   </Box>
                 </Box>
