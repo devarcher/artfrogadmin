@@ -11,12 +11,12 @@ const EditTeachers = props => {
   return (
     <div>
       <CssBaseline>
-        <Grid container display="flex" direction="column" spacing={4}>
+        <Grid container display="flex" direction="column">
           <Grid item align="flex-start">
             <Typography variant="h3">Edit Teachers</Typography>
           </Grid>
 
-          <Grid item align="center" justifyItems="center">
+          <Grid item align="center" justifyItems="center" xs={12}>
             <AddTeacher />
             {teachers.map(teacher => (
               <TeacherCard

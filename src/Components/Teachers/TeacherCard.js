@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   form: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   bioSection: {
     width: '85vw'
