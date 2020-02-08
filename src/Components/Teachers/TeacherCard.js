@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import {
   Typography,
@@ -40,7 +41,8 @@ const TeacherCard = props => {
   const [teacher, setTeacher] = useState({
     first_name: teachers.first_name,
     last_name: teachers.last_name,
-    bio: teachers.bio
+    bio: teachers.bio,
+    id: teachers.id
   });
 
   const cancelHandler = e => {
@@ -48,9 +50,21 @@ const TeacherCard = props => {
       ...teacher,
       first_name: teachers.first_name,
       last_name: teachers.last_name,
-      bio: teachers.bio
+      bio: teachers.bio,
+      id: teachers.id
     });
     toggleIsInEditMode();
+  };
+
+  const saveHandler = e => {
+    const { first_name, last_name, bio, id } = teacher;
+    const teacherSaveData = {
+      first_name,
+      last_name,
+      bio,
+      id
+    };
+    console.log(teacherSaveData);
   };
 
   return (
@@ -136,7 +150,6 @@ const TeacherCard = props => {
                     <TextField
                       label="Last Name"
                       variant="outlined"
-                      autoFocus={true}
                       value={teacher.last_name}
                       onChange={e =>
                         setTeacher({ ...teacher, last_name: e.target.value })
@@ -186,7 +199,6 @@ const TeacherCard = props => {
                       className={classes.bioSection}
                       label="Bio"
                       variant="outlined"
-                      autoFocus={true}
                       value={teacher.bio}
                       onChange={e =>
                         setTeacher({ ...teacher, bio: e.target.value })
@@ -228,7 +240,7 @@ const TeacherCard = props => {
                     color="secondary"
                     className={classes.button}
                     startIcon={<SaveAltIcon />}
-                    onClick={toggleIsInEditMode}
+                    onClick={saveHandler}
                   >
                     Save
                   </Button>
