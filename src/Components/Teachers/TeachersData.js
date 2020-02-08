@@ -20,10 +20,6 @@ class TeachersData extends React.Component {
   //   }
   // };
 
-  // inputHandler = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
-
   async fetchTeachers() {
     try {
       const url = 'http://localhost:80/adminEditTeacher';

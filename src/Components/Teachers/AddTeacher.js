@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Typography,
   CssBaseline,
@@ -24,9 +24,13 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
-  const { inputHandler } = props;
-
   const classes = useStyles();
+
+  const [teacher, setTeacher] = useState({
+    first_name: '',
+    last_name: '',
+    bio: ''
+  });
 
   return (
     <>
@@ -67,8 +71,11 @@ const AddTeacher = props => {
                     label="First Name"
                     variant="outlined"
                     autoFocus={true}
+                    value={teacher.first_name}
+                    onChange={e =>
+                      setTeacher({ ...teacher, first_name: e.target.value })
+                    }
                     placeholder="First Name"
-                    name="teachers.first_name"
                   />
                 </Box>
               </Box>
@@ -87,9 +94,12 @@ const AddTeacher = props => {
                   <TextField
                     label="Last Name"
                     variant="outlined"
-                    onChange={e => inputHandler(e)}
                     autoFocus={true}
-                    name="teachers.last_name"
+                    value={teacher.last_name}
+                    onChange={e =>
+                      setTeacher({ ...teacher, last_name: e.target.value })
+                    }
+                    placeholder="Last Name"
                   />
                 </Box>
               </Box>
@@ -115,9 +125,12 @@ const AddTeacher = props => {
                     className={classes.bioSection}
                     label="Bio"
                     variant="outlined"
-                    onChange={e => inputHandler(e)}
                     autoFocus={true}
-                    name="teachers.bio"
+                    value={teacher.bio}
+                    onChange={e =>
+                      setTeacher({ ...teacher, bio: e.target.value })
+                    }
+                    placeholder="Bio"
                   />
                 </Box>
               </Box>
