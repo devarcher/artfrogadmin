@@ -5,25 +5,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { Button, MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { createMuiTheme } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import { ThemeProvider } from '@material-ui/core/styles';
 
 import ButtonAppBarCollapse from './ButtonAppBarCollapse';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#679488'
-    },
-    secondary: {
-      main: '#DC6866'
-    }
-  }
-});
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -33,6 +17,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: '20px',
     textDecoration: 'none',
     color: 'white'
+  },
+  linksCollapsed: {
+    color: 'black',
+    marginRight: 'none',
+    textDecoration: 'none'
   }
 }));
 
@@ -55,14 +44,48 @@ const AppBarCollapse = props => {
   const classes = useStyles();
   return (
     <div className={props.classes.root}>
-      <ButtonAppBarCollapse>
-        <Button
-          variant="outlined"
-          color="inherit"
-          onClick={() => logOutHandler(() => <Redirect to="/admin" />)}
-        >
-          LOG OUT
-        </Button>
+      <ButtonAppBarCollapse logOutHandler={logOutHandler}>
+        <MenuItem>
+          <Typography variant="h6">
+            <Link to="/panel/classes" className={classes.linksCollapsed}>
+              Classes
+            </Link>
+          </Typography>
+        </MenuItem>
+
+        <MenuItem>
+          <Typography variant="h6">
+            <Link to="/panel/students" className={classes.linksCollapsed}>
+              Students
+            </Link>
+          </Typography>
+        </MenuItem>
+
+        <MenuItem>
+          <Typography variant="h6">
+            <Link to="/panel/teachers" className={classes.linksCollapsed}>
+              Teachers
+            </Link>
+          </Typography>
+        </MenuItem>
+
+        <MenuItem>
+          <Typography variant="h6">
+            <Link to="/panel/board" className={classes.linksCollapsed}>
+              Board
+            </Link>
+          </Typography>
+        </MenuItem>
+
+        <MenuItem>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => logOutHandler(() => <Redirect to="/admin" />)}
+          >
+            LOG OUT
+          </Button>
+        </MenuItem>
       </ButtonAppBarCollapse>
       <div className={props.classes.buttonBar} id="appbar-collapse">
         <Typography variant="h6">

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { withStyles } from '@material-ui/core/styles';
 import { Menu } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -43,11 +44,11 @@ class ButtonAppBarCollapse extends React.Component {
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'right'
+            horizontal: 'center'
           }}
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right'
+            vertical: 'bottom',
+            horizontal: 'center'
           }}
           open={open}
           onClose={this.handleClose}
