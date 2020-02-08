@@ -36,12 +36,22 @@ const TeacherCard = props => {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
 
-  // Teacher Info State
+  // Local Teacher Info State
   const [teacher, setTeacher] = useState({
     first_name: teachers.first_name,
     last_name: teachers.last_name,
     bio: teachers.bio
   });
+
+  const cancelHandler = e => {
+    setTeacher({
+      ...teacher,
+      first_name: teachers.first_name,
+      last_name: teachers.last_name,
+      bio: teachers.bio
+    });
+    toggleIsInEditMode();
+  };
 
   return (
     <>
@@ -209,7 +219,7 @@ const TeacherCard = props => {
                     color="secondary"
                     className={classes.button}
                     startIcon={<CancelOutlinedIcon />}
-                    onClick={toggleIsInEditMode}
+                    onClick={e => cancelHandler(e)}
                   >
                     Cancel
                   </Button>
