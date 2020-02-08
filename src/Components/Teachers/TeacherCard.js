@@ -64,7 +64,36 @@ const TeacherCard = props => {
       bio,
       id
     };
-    console.log(teacherSaveData);
+    // console.log(teacherSaveData);
+    axios({
+      method: 'post',
+      url: 'localhost:80/createTeacher',
+      data: teacherSaveData
+    })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+
+  const deleteHandler = e => {
+    const { id } = teacher;
+    const teacherDeleteData = {
+      id
+    };
+    axios({
+      method: 'delete',
+      url: 'localhost:80/deleteTeacher',
+      data: teacherDeleteData
+    })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -271,6 +300,7 @@ const TeacherCard = props => {
                     color="secondary"
                     startIcon={<DeleteIcon />}
                     className={classes.button}
+                    onClick={deleteHandler}
                   >
                     Delete {teachers.first_name} {teachers.last_name}
                   </Button>
