@@ -67,7 +67,7 @@ const TeacherCard = props => {
     // console.log(teacherSaveData);
     axios({
       method: 'post',
-      url: 'localhost:80/createTeacher',
+      url: 'localhost:80/teachers',
       data: teacherSaveData
     })
       .then(function(response) {

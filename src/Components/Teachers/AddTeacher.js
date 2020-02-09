@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+// Material UI
 import {
   Typography,
   CssBaseline,
@@ -24,6 +27,7 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
+  const { addTeacherRenderBadSolution } = props;
   const classes = useStyles();
 
   const [teacher, setTeacher] = useState({
@@ -31,6 +35,33 @@ const AddTeacher = props => {
     last_name: '',
     bio: ''
   });
+
+  const saveHandler = e => {
+    const { first_name, last_name, bio, id } = teacher;
+    const data = {
+      first_name: first_name,
+      last_name: last_name,
+      bio: bio
+    };
+    const dataJSON = JSON.stringify(data);
+    console.log(data);
+    axios({
+      method: 'post',
+      url: 'http://localhost:80/createTeacher',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: dataJSON
+    })
+      .then(function(response) {
+        console.log(response);
+        setTeacher({ first_name: '', last_name: '', bio: '' });
+        addTeacherRenderBadSolution();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -142,6 +173,7 @@ const AddTeacher = props => {
                   color="secondary"
                   startIcon={<SaveAltIcon />}
                   className={classes.button}
+                  onClick={saveHandler}
                 >
                   Save New Teacher
                 </Button>

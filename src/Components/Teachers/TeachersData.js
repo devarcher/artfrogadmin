@@ -3,12 +3,17 @@ import EditTeachers from './EditTeachers';
 
 class TeachersData extends React.Component {
   state = {
-    teachers: []
+    teachers: [],
+    reRender: false
   };
 
   componentDidMount() {
     this.fetchTeachers();
   }
+
+  addTeacherRenderBadSolution = () => {
+    this.setState({ reRender: !this.state.reRender });
+  };
 
   // saveEditedText = () => {
   //   // only allow it to be saved if the text isn't an empty string
@@ -49,6 +54,7 @@ class TeachersData extends React.Component {
           changeEditMode={this.changeEditMode}
           saveEditedText={this.saveEditedText}
           inputHandler={this.inputHandler}
+          addTeacherRenderBadSolution={this.addTeacherRenderBadSolution}
         />
       </div>
     );
