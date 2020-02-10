@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
-  const { addTeacherReRender } = props;
+  const { reRenderHelper } = props;
   const classes = useStyles();
 
   const [teacher, setTeacher] = useState({
@@ -37,7 +37,7 @@ const AddTeacher = props => {
   });
 
   const saveHandler = e => {
-    const { first_name, last_name, bio, id } = teacher;
+    const { first_name, last_name, bio } = teacher;
     const data = {
       first_name: first_name,
       last_name: last_name,
@@ -56,7 +56,7 @@ const AddTeacher = props => {
       .then(function(response) {
         console.log(response);
         setTeacher({ first_name: '', last_name: '', bio: '' });
-        addTeacherReRender();
+        reRenderHelper();
       })
       .catch(function(error) {
         console.log(error);
