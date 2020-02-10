@@ -24,6 +24,7 @@ const EditTeachers = props => {
                 teachers={teacher}
                 saveEditedText={saveEditedText}
                 inputHandler={inputHandler}
+                reRenderHelper={reRenderHelper}
               />
             ))}
           </Grid>

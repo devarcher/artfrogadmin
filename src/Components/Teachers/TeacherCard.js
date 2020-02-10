@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 const TeacherCard = props => {
-  const { teachers } = props;
+  const { teachers, reRenderHelper } = props;
 
   const classes = useStyles();
 
@@ -57,21 +57,26 @@ const TeacherCard = props => {
   };
 
   const saveHandler = e => {
-    const { first_name, last_name, bio, id } = teacher;
-    const teacherSaveData = {
-      first_name,
-      last_name,
-      bio,
-      id
+    const { first_name, last_name, bio } = teacher;
+    const data = {
+      first_name: first_name,
+      last_name: last_name,
+      bio: bio
     };
-    // console.log(teacherSaveData);
+    const dataJSON = JSON.stringify(data);
+    console.log(data);
     axios({
-      method: 'post',
-      url: 'localhost:80/teachers',
-      data: teacherSaveData
+      method: 'put',
+      url: 'http://localhost:80/updateTeacher',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: dataJSON
     })
       .then(function(response) {
         console.log(response);
+        toggleIsInEditMode();
+        reRenderHelper();
       })
       .catch(function(error) {
         console.log(error);
