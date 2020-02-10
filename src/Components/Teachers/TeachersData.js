@@ -11,8 +11,9 @@ class TeachersData extends React.Component {
     this.fetchTeachers();
   }
 
-  addTeacherRenderBadSolution = () => {
+  addTeacherReRender = () => {
     this.setState({ reRender: !this.state.reRender });
+    this.fetchTeachers();
   };
 
   // saveEditedText = () => {
@@ -54,7 +55,7 @@ class TeachersData extends React.Component {
           changeEditMode={this.changeEditMode}
           saveEditedText={this.saveEditedText}
           inputHandler={this.inputHandler}
-          addTeacherRenderBadSolution={this.addTeacherRenderBadSolution}
+          addTeacherReRender={this.addTeacherReRender} 
         />
       </div>
     );

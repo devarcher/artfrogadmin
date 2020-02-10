@@ -6,12 +6,7 @@ import AddTeacher from './AddTeacher';
 import { Grid, Typography, CssBaseline } from '@material-ui/core';
 
 const EditTeachers = props => {
-  const {
-    teachers,
-    saveEditedText,
-    inputHandler,
-    addTeacherRenderBadSolution
-  } = props;
+  const { teachers, saveEditedText, inputHandler, addTeacherReRender } = props;
 
   return (
     <div>
@@ -22,9 +17,7 @@ const EditTeachers = props => {
           </Grid>
 
           <Grid item align="center" justifyItems="center" xs={12}>
-            <AddTeacher
-              addTeacherRenderBadSolution={addTeacherRenderBadSolution}
-            />
+            <AddTeacher addTeacherReRender={addTeacherReRender} />
             {teachers.map(teacher => (
               <TeacherCard
                 key={teacher.id}

@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
-  const { addTeacherRenderBadSolution } = props;
+  const { addTeacherReRender } = props;
   const classes = useStyles();
 
   const [teacher, setTeacher] = useState({
@@ -56,7 +56,7 @@ const AddTeacher = props => {
       .then(function(response) {
         console.log(response);
         setTeacher({ first_name: '', last_name: '', bio: '' });
-        addTeacherRenderBadSolution();
+        addTeacherReRender();
       })
       .catch(function(error) {
         console.log(error);
@@ -118,7 +118,7 @@ const AddTeacher = props => {
               >
                 <Box marginRight="10px">
                   <Typography variant="h6">
-                    <strong>First Name: </strong>
+                    <strong>Last Name: </strong>
                   </Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="left">
