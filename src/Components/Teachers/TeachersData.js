@@ -16,19 +16,9 @@ class TeachersData extends React.Component {
     this.fetchTeachers();
   };
 
-  // saveEditedText = () => {
-  //   // only allow it to be saved if the text isn't an empty string
-  //   if (this.refs.editText.value.length > 0) {
-  //     this.setState({
-  //       isInEditMode: false
-  //     });
-  //     this.props.updateText(this.refs.editText.value, this.props.index);
-  //   }
-  // };
-
   async fetchTeachers() {
     try {
-      const url = 'http://localhost:80/adminEditTeacher';
+      const url = 'http://localhost:80/teachersGetCMS';
       const response = await fetch(url);
       const data = await response.json();
       // console.log(data);
