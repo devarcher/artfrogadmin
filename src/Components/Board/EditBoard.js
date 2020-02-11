@@ -11,12 +11,12 @@ const EditBoard = props => {
   return (
     <div>
       <CssBaseline>
-        <Grid container display="flex" direction="column" spacing={2}>
-          <Grid item align="flex-start">
+        <Grid container display="flex" direction="column" alignItems="center">
+          <Grid item>
             <Typography variant="h3">Edit Board</Typography>
           </Grid>
 
-          <Grid item xs={12} sm={10} md={8} lg={8} xl={8}>
+          <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddMember onUpdatedDataBase={onUpdatedDataBase} />
             {board.map(member => (
               <BoardCard

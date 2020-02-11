@@ -12,7 +12,7 @@ const EditTeachers = props => {
     <div>
       <CssBaseline>
         <Grid container display="flex" direction="column" alignItems="center">
-          <Grid item align="flex-start">
+          <Grid item>
             <Typography variant="h3">Edit Teachers</Typography>
           </Grid>
 

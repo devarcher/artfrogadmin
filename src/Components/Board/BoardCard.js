@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
   form: {
-    width: '100%'
+    width: '100vw'
   },
   button: {
     marginBottom: '15px',
