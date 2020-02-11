@@ -11,7 +11,7 @@ class TeachersData extends React.Component {
     this.fetchTeachers();
   }
 
-  reRenderHelper = () => {
+  onTeacherAdded = () => {
     this.setState({ reRender: !this.state.reRender });
     this.fetchTeachers();
   };
@@ -55,7 +55,7 @@ class TeachersData extends React.Component {
           changeEditMode={this.changeEditMode}
           saveEditedText={this.saveEditedText}
           inputHandler={this.inputHandler}
-          reRenderHelper={this.reRenderHelper}
+          onTeacherAdded={this.onTeacherAdded}
         />
       </div>
     );

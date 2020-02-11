@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
-  const { reRenderHelper } = props;
+  const { onTeacherAdded } = props;
   const classes = useStyles();
 
   const [teacher, setTeacher] = useState({
@@ -45,6 +45,7 @@ const AddTeacher = props => {
     };
     const dataJSON = JSON.stringify(data);
     console.log(data);
+
     axios({
       method: 'post',
       url: 'http://localhost:80/createTeacher',
@@ -56,7 +57,7 @@ const AddTeacher = props => {
       .then(function(response) {
         console.log(response);
         setTeacher({ first_name: '', last_name: '', bio: '' });
-        reRenderHelper();
+        onTeacherAdded();
       })
       .catch(function(error) {
         console.log(error);
