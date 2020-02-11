@@ -19,14 +19,14 @@ class BoardData extends React.Component {
       const url = 'http://localhost:80/aboutCMS';
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       const boardData = data.board.map(member => ({
         id: member.id,
         first_name: member.first_name,
         last_name: member.last_name,
         bio: member.bio
       }));
-      console.log('board fetch: ', boardData);
+      // console.log('board fetch: ', boardData);
       this.setState({ board: boardData });
     } catch (err) {
       console.log(err);
