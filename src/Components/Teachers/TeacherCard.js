@@ -68,7 +68,7 @@ const TeacherCard = props => {
     // console.log('UPDATE SAVE: ', data);
     axios({
       method: 'put',
-      url: 'http://localhost:80/teachers/editTeacher',
+      url: 'http://localhost:80/teachers',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -93,7 +93,7 @@ const TeacherCard = props => {
 
     axios({
       method: 'delete',
-      url: 'http://localhost:80/teachers/deleteTeacher',
+      url: 'http://localhost:80/teachers',
       headers: {
         'Content-Type': 'application/json'
       },

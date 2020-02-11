@@ -48,7 +48,7 @@ const AddTeacher = props => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:80/teachers/createTeacher',
+      url: 'http://localhost:80/teachers',
       headers: {
         'Content-Type': 'application/json'
       },
