@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 const TeacherCard = props => {
-  const { teachers, reRenderHelper } = props;
+  const { teachers, onUpdatedDataBase } = props;
 
   const classes = useStyles();
 
@@ -57,17 +57,18 @@ const TeacherCard = props => {
   };
 
   const saveHandler = e => {
-    const { first_name, last_name, bio } = teacher;
+    const { first_name, last_name, bio, id } = teacher;
     const data = {
       first_name: first_name,
       last_name: last_name,
-      bio: bio
+      bio: bio,
+      id: id
     };
     const dataJSON = JSON.stringify(data);
-    console.log(data);
+    // console.log('UPDATE SAVE: ', data);
     axios({
       method: 'put',
-      url: 'http://localhost:80/updateTeacher',
+      url: 'http://localhost:80/teachers/editTeacher',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -76,7 +77,7 @@ const TeacherCard = props => {
       .then(function(response) {
         console.log(response);
         toggleIsInEditMode();
-        reRenderHelper();
+        onUpdatedDataBase();
       })
       .catch(function(error) {
         console.log(error);
@@ -85,16 +86,22 @@ const TeacherCard = props => {
 
   const deleteHandler = e => {
     const { id } = teacher;
-    const teacherDeleteData = {
-      id
+    const data = {
+      id: id
     };
+    const dataJSON = JSON.stringify(data);
+
     axios({
       method: 'delete',
-      url: 'localhost:80/deleteTeacher',
-      data: teacherDeleteData
+      url: 'http://localhost:80/teachers/deleteTeacher',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: dataJSON
     })
       .then(function(response) {
         console.log(response);
+        onUpdatedDataBase();
       })
       .catch(function(error) {
         console.log(error);

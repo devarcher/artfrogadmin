@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 });
 
 const AddTeacher = props => {
-  const { onTeacherAdded } = props;
+  const { onUpdatedDataBase } = props;
   const classes = useStyles();
 
   const [teacher, setTeacher] = useState({
@@ -57,7 +57,7 @@ const AddTeacher = props => {
       .then(function(response) {
         console.log(response);
         setTeacher({ first_name: '', last_name: '', bio: '' });
-        onTeacherAdded();
+        onUpdatedDataBase();
       })
       .catch(function(error) {
         console.log(error);

@@ -4,15 +4,13 @@ import EditTeachers from './EditTeachers';
 class TeachersData extends React.Component {
   state = {
     teachers: [],
-    reRender: false
   };
 
   componentDidMount() {
     this.fetchTeachers();
   }
 
-  onTeacherAdded = () => {
-    this.setState({ reRender: !this.state.reRender });
+  onUpdatedDataBase = () => {
     this.fetchTeachers();
   };
 
@@ -45,7 +43,7 @@ class TeachersData extends React.Component {
           changeEditMode={this.changeEditMode}
           saveEditedText={this.saveEditedText}
           inputHandler={this.inputHandler}
-          onTeacherAdded={this.onTeacherAdded}
+          onUpdatedDataBase={this.onUpdatedDataBase}
         />
       </div>
     );
