@@ -4,7 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 // Components
 import Navigation from './Components/Navigation/Navigation';
 import Login from './Components/Auth/Login';
-import Board from './Components/Board/Board';
+import Board from './Components/Board/BoardData';
 import Classes from './Components/Classes/Classes';
 import Students from './Components/Students/Students';
 import TeachersData from './Components/Teachers/TeachersData';
