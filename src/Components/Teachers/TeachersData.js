@@ -3,7 +3,7 @@ import EditTeachers from './EditTeachers';
 
 class TeachersData extends React.Component {
   state = {
-    teachers: [],
+    teachers: []
   };
 
   componentDidMount() {
@@ -40,9 +40,6 @@ class TeachersData extends React.Component {
       <div>
         <EditTeachers
           teachers={teachers}
-          changeEditMode={this.changeEditMode}
-          saveEditedText={this.saveEditedText}
-          inputHandler={this.inputHandler}
           onUpdatedDataBase={this.onUpdatedDataBase}
         />
       </div>

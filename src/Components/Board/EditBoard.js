@@ -6,24 +6,22 @@ import AddMember from './AddMember';
 import { Grid, Typography, CssBaseline } from '@material-ui/core';
 
 const EditBoard = props => {
-  const { board, saveEditedText, inputHandler, onUpdatedDataBase } = props;
+  const { board, onUpdatedDataBase } = props;
 
   return (
     <div>
       <CssBaseline>
-        <Grid container display="flex" direction="column" alignItems="center">
+        <Grid container display="flex" direction="column" spacing={2}>
           <Grid item align="flex-start">
             <Typography variant="h3">Edit Board</Typography>
           </Grid>
 
-          <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
+          <Grid item xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddMember onUpdatedDataBase={onUpdatedDataBase} />
             {board.map(member => (
               <BoardCard
                 key={member.id}
                 board={member}
-                saveEditedText={saveEditedText}
-                inputHandler={inputHandler}
                 onUpdatedDataBase={onUpdatedDataBase}
               />
             ))}

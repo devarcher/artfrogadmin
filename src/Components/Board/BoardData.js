@@ -38,13 +38,7 @@ class BoardData extends React.Component {
     // console.log('in render: ', board);
     return (
       <div>
-        <EditBoard
-          board={board}
-          changeEditMode={this.changeEditMode}
-          saveEditedText={this.saveEditedText}
-          inputHandler={this.inputHandler}
-          onUpdatedDataBase={this.onUpdatedDataBase}
-        />
+        <EditBoard board={board} onUpdatedDataBase={this.onUpdatedDataBase} />
       </div>
     );
   }

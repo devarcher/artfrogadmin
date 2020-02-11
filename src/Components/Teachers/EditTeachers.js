@@ -6,7 +6,7 @@ import AddTeacher from './AddTeacher';
 import { Grid, Typography, CssBaseline } from '@material-ui/core';
 
 const EditTeachers = props => {
-  const { teachers, saveEditedText, inputHandler, onUpdatedDataBase } = props;
+  const { teachers, onUpdatedDataBase } = props;
 
   return (
     <div>
@@ -22,8 +22,6 @@ const EditTeachers = props => {
               <TeacherCard
                 key={teacher.id}
                 teachers={teacher}
-                saveEditedText={saveEditedText}
-                inputHandler={inputHandler}
                 onUpdatedDataBase={onUpdatedDataBase}
               />
             ))}

@@ -131,7 +131,7 @@ const TeacherCard = props => {
               </Typography>
             </Box>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails display="flex" justifyItems="center">
+          <ExpansionPanelDetails display="flex">
             <form className={classes.form} noValidate autoComplete="off">
               {isInEditMode ? (
                 <Box
@@ -211,9 +211,7 @@ const TeacherCard = props => {
                     </Typography>
                   </Box>
                   <Box>
-                    <Typography variant="h6" flexGrow={1} textAlign="left">
-                      {teachers.last_name}
-                    </Typography>
+                    <Typography variant="h6">{teachers.last_name}</Typography>
                   </Box>
                 </Box>
               )}
