@@ -41,7 +41,19 @@ const StudentCard = props => {
   const [student, setStudent] = useState({
     first_name: students.first_name,
     last_name: students.last_name,
-    bio: students.bio,
+    guardian_first_name: students.guardian_first_name,
+    guardian_last_name: students.guardian_last_name,
+    student_DOB: students.student_DOB,
+    phone: students.phone,
+    email: students.email,
+    address: students.address,
+    city: students.city,
+    state: students.state,
+    zip: students.zip,
+    alt_first_name: students.alt_first_name,
+    alt_last_name: students.alt_last_name,
+    alt_phone: students.alt_phone,
+    photo_permission: students.photo_permission,
     id: students.id
   });
 
@@ -50,19 +62,42 @@ const StudentCard = props => {
       ...student,
       first_name: students.first_name,
       last_name: students.last_name,
-      bio: students.bio,
+      guardian_first_name: students.guardian_first_name,
+      guardian_last_name: students.guardian_last_name,
+      student_DOB: students.student_DOB,
+      phone: students.phone,
+      email: students.email,
+      address: students.address,
+      city: students.city,
+      state: students.state,
+      zip: students.zip,
+      alt_first_name: students.alt_first_name,
+      alt_last_name: students.alt_last_name,
+      alt_phone: students.alt_phone,
+      photo_permission: students.photo_permission,
       id: students.id
     });
     toggleIsInEditMode();
   };
 
   const saveHandler = e => {
-    const { first_name, last_name, bio, id } = student;
     const data = {
-      first_name: first_name,
-      last_name: last_name,
-      bio: bio,
-      id: id
+      first_name: student.first_name,
+      last_name: student.last_name,
+      guardian_first_name: student.guardian_first_name,
+      guardian_last_name: student.guardian_last_name,
+      student_DOB: student.student_DOB,
+      phone: student.phone,
+      email: student.email,
+      address: student.address,
+      city: student.city,
+      state: student.state,
+      zip: student.zip,
+      alt_first_name: student.alt_first_name,
+      alt_last_name: student.alt_last_name,
+      alt_phone: student.alt_phone,
+      photo_permission: student.photo_permission,
+      id: student.id
     };
     const dataJSON = JSON.stringify(data);
     // console.log('UPDATE SAVE: ', data);
@@ -212,6 +247,100 @@ const StudentCard = props => {
                   </Box>
                   <Box>
                     <Typography variant="h6">{students.last_name}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Guardian First: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="First Name"
+                      variant="outlined"
+                      autoFocus={true}
+                      value={student.guardian_first_name}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          guardian_first_name: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Guardian First: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">
+                      {students.guardian_first_name}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Guardian Last: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="First Name"
+                      variant="outlined"
+                      autoFocus={true}
+                      value={student.guardian_last_name}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          guardian_last_name: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Guardian Last: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">
+                      {students.guardian_last_name}
+                    </Typography>
                   </Box>
                 </Box>
               )}
