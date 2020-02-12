@@ -1,5 +1,6 @@
 import React from 'react';
 import EditStudents from '../Students/EditStudents';
+import moment from 'moment';
 
 class StudentsData extends React.Component {
   state = {
@@ -26,7 +27,7 @@ class StudentsData extends React.Component {
         last_name: student.last_name,
         guardian_first_name: student.guardian_first_name,
         guardian_last_name: student.guardian_last_name,
-        student_DOB: student.student_DOB,
+        student_DOB: moment(student.student_DOB).format('MM-DD-YYYY'),
         phone: student.phone,
         email: student.email,
         address: student.address,

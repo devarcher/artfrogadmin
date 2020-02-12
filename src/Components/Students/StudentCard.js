@@ -143,6 +143,11 @@ const StudentCard = props => {
       });
   };
 
+  // Able to map Inputs dynamically?
+  // {Object.entries(student).map(([key, value]) => (
+  //   <div key={student.id}></div>
+  // ))}
+
   return (
     <>
       <CssBaseline>
@@ -267,7 +272,6 @@ const StudentCard = props => {
                     <TextField
                       label="First Name"
                       variant="outlined"
-                      autoFocus={true}
                       value={student.guardian_first_name || ''}
                       onChange={e =>
                         setStudent({
@@ -314,7 +318,6 @@ const StudentCard = props => {
                     <TextField
                       label="Last Name"
                       variant="outlined"
-                      autoFocus={true}
                       value={student.guardian_last_name || ''}
                       onChange={e =>
                         setStudent({
@@ -340,6 +343,479 @@ const StudentCard = props => {
                   <Box flexGrow={1} textAlign="left">
                     <Typography variant="h6">
                       {students.guardian_last_name}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Student DOB: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      variant="outlined"
+                      type="date"
+                      value={student.student_DOB || ''}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          student_DOB: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Student DOB: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.student_DOB}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Phone: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Phone"
+                      variant="outlined"
+                      value={student.phone}
+                      onChange={e =>
+                        setStudent({ ...student, phone: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Phone: </strong>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="h6">{students.phone}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Email: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Email"
+                      variant="outlined"
+                      autoFocus={true}
+                      value={student.email}
+                      onChange={e =>
+                        setStudent({ ...student, email: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Email: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.email}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Address: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Address"
+                      variant="outlined"
+                      value={student.address}
+                      onChange={e =>
+                        setStudent({ ...student, address: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Address: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.address}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>City: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="City"
+                      variant="outlined"
+                      value={student.city}
+                      onChange={e =>
+                        setStudent({ ...student, city: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>City: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.city}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>State: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="State"
+                      variant="outlined"
+                      value={student.state}
+                      onChange={e =>
+                        setStudent({ ...student, state: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>State: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.state}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Zip: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Zip"
+                      variant="outlined"
+                      value={student.zip}
+                      onChange={e =>
+                        setStudent({ ...student, zip: e.target.value })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Zip: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.zip}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt First: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Alt First"
+                      variant="outlined"
+                      value={student.alt_first_name}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          alt_first_name: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt First: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">
+                      {students.alt_first_name}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt Last: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Alt Last"
+                      variant="outlined"
+                      value={student.alt_last_name}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          alt_last_name: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt Last: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">
+                      {students.alt_last_name}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt Phone: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Alt Phone"
+                      variant="outlined"
+                      value={student.alt_phone}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          alt_phone: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Alt Phone: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{students.alt_phone}</Typography>
+                  </Box>
+                </Box>
+              )}
+
+              {isInEditMode ? (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Photo Perm: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <TextField
+                      label="Photo Perm"
+                      variant="outlined"
+                      value={student.photo_permission}
+                      onChange={e =>
+                        setStudent({
+                          ...student,
+                          photo_permission: e.target.value
+                        })
+                      }
+                    />
+                  </Box>
+                </Box>
+              ) : (
+                <Box
+                  p={1}
+                  display="flex"
+                  alignItems="center"
+                  borderBottom="1px solid grey"
+                >
+                  <Box marginRight="10px">
+                    <Typography variant="h6">
+                      <strong>Photo Perm: </strong>
+                    </Typography>
+                  </Box>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">
+                      {students.photo_permission}
                     </Typography>
                   </Box>
                 </Box>
