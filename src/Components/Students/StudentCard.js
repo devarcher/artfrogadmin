@@ -268,7 +268,7 @@ const StudentCard = props => {
                       label="First Name"
                       variant="outlined"
                       autoFocus={true}
-                      value={student.guardian_first_name}
+                      value={student.guardian_first_name || ''}
                       onChange={e =>
                         setStudent({
                           ...student,
@@ -312,10 +312,10 @@ const StudentCard = props => {
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      label="First Name"
+                      label="Last Name"
                       variant="outlined"
                       autoFocus={true}
-                      value={student.guardian_last_name}
+                      value={student.guardian_last_name || ''}
                       onChange={e =>
                         setStudent({
                           ...student,
