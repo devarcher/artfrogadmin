@@ -449,7 +449,6 @@ const StudentCard = props => {
                     <TextField
                       label="Email"
                       variant="outlined"
-                      autoFocus={true}
                       value={student.email}
                       onChange={e =>
                         setStudent({ ...student, email: e.target.value })
