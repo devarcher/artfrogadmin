@@ -20,9 +20,15 @@ export default function SortButtons(props) {
     onSortNameAsc,
     onSortNameDesc,
     onSortCreatedAsc,
-    onSortCreatedDesc
+    onSortCreatedDesc,
+    students
   } = props;
 
+  const emails = students.map(student => {
+    return `${student.email}`;
+  });
+
+  console.log(emails);
   return (
     <div className={classes.root}>
       <ButtonGroup color="primary" aria-label="outlined primary button group">
@@ -30,6 +36,14 @@ export default function SortButtons(props) {
         <Button onClick={onSortNameDesc}>Last Name ↓</Button>
         <Button onClick={onSortCreatedAsc}>Created ↑</Button>
         <Button onClick={onSortCreatedDesc}>Created ↓</Button>
+        <Button>
+          <a
+            style={{ textDecoration: 'none', color: '#DC6866' }}
+            href={`mailto:?bcc=${emails}`}
+          >
+            Email ALL
+          </a>
+        </Button>
       </ButtonGroup>
     </div>
   );

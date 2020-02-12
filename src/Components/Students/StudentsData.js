@@ -46,6 +46,74 @@ class StudentsData extends React.Component {
     }
   }
 
+  onSortNameAsc = () => {
+    let newStudents = [...this.state.students];
+    newStudents.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA > nameB) {
+        return 1;
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(newStudents);
+    this.setState({ students: newStudents });
+  };
+
+  onSortNameDesc = () => {
+    let newStudents = [...this.state.students];
+    newStudents.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(newStudents);
+    this.setState({ students: newStudents });
+  };
+
+  onSortCreatedAsc = () => {
+    let newStudents = [...this.state.students];
+    newStudents.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA > numB) {
+        return 1;
+      }
+      if (numA < numB) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(newStudents);
+    this.setState({ students: newStudents });
+  };
+
+  onSortCreatedDesc = () => {
+    let newStudents = [...this.state.students];
+    newStudents.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA < numB) {
+        return 1;
+      }
+      if (numA > numB) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(newStudents);
+    this.setState({ students: newStudents });
+  };
+
   render() {
     const { students } = this.state;
     // console.log('in render: ', students);
@@ -54,6 +122,10 @@ class StudentsData extends React.Component {
         <EditStudents
           students={students}
           onUpdatedDataBase={this.onUpdatedDataBase}
+          onSortNameAsc={this.onSortNameAsc}
+          onSortNameDesc={this.onSortNameDesc}
+          onSortCreatedAsc={this.onSortCreatedAsc}
+          onSortCreatedDesc={this.onSortCreatedDesc}
         />
       </div>
     );
