@@ -3,16 +3,14 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const useStyles = makeStyles({
+  box: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& > *': {
-      margin: theme.spacing(1)
-    }
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    margin: '15px'
   }
-}));
+});
 
 export default function SortButtons(props) {
   const classes = useStyles();
@@ -28,15 +26,14 @@ export default function SortButtons(props) {
     return `${student.email}`;
   });
 
-  console.log(emails);
   return (
-    <div className={classes.root}>
-      <ButtonGroup color="primary" aria-label="outlined primary button group">
+    <div>
+      <ButtonGroup className={classes.box} color="primary">
         <Button onClick={onSortNameAsc}>Last Name ↑</Button>
         <Button onClick={onSortNameDesc}>Last Name ↓</Button>
         <Button onClick={onSortCreatedAsc}>Created ↑</Button>
         <Button onClick={onSortCreatedDesc}>Created ↓</Button>
-        <Button>
+        <Button variant="outlined">
           <a
             style={{ textDecoration: 'none', color: '#DC6866' }}
             href={`mailto:?bcc=${emails}`}

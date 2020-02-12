@@ -4,7 +4,8 @@ import moment from 'moment';
 
 class StudentsData extends React.Component {
   state = {
-    students: []
+    students: [],
+    query: ''
   };
 
   componentDidMount() {
@@ -59,7 +60,7 @@ class StudentsData extends React.Component {
       }
       return 0;
     });
-    console.log(newStudents);
+    // console.log(newStudents);
     this.setState({ students: newStudents });
   };
 
@@ -76,7 +77,7 @@ class StudentsData extends React.Component {
       }
       return 0;
     });
-    console.log(newStudents);
+    // console.log(newStudents);
     this.setState({ students: newStudents });
   };
 
@@ -93,7 +94,7 @@ class StudentsData extends React.Component {
       }
       return 0;
     });
-    console.log(newStudents);
+    // console.log(newStudents);
     this.setState({ students: newStudents });
   };
 
@@ -110,13 +111,21 @@ class StudentsData extends React.Component {
       }
       return 0;
     });
-    console.log(newStudents);
+    // console.log(newStudents);
     this.setState({ students: newStudents });
   };
 
+  searchFieldText = e => {
+    this.setState({ query: e.target.value });
+  };
+
   render() {
-    const { students } = this.state;
-    // console.log('in render: ', students);
+    const { students, query } = this.state;
+
+    // let newStudents = students.filter(student => {
+    //   return student.indexOf(query) !== -1;
+    // });
+
     return (
       <div>
         <EditStudents
@@ -126,6 +135,8 @@ class StudentsData extends React.Component {
           onSortNameDesc={this.onSortNameDesc}
           onSortCreatedAsc={this.onSortCreatedAsc}
           onSortCreatedDesc={this.onSortCreatedDesc}
+          searchFieldText={this.searchFieldText}
+          query={query}
         />
       </div>
     );

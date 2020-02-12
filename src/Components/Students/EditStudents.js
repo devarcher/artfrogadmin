@@ -1,9 +1,10 @@
 import React from 'react';
 import StudentCard from './StudentCard';
-import ButtonGroup from '../ButtonGroup/ButtonGroup';
+import ButtonGroup from '../SingleComponents/ButtonGroup';
+import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
-import { Grid, Typography, CssBaseline } from '@material-ui/core';
+import { Grid, CssBaseline } from '@material-ui/core';
 const EditStudents = props => {
   const {
     students,
@@ -11,7 +12,9 @@ const EditStudents = props => {
     onSortNameAsc,
     onSortNameDesc,
     onSortCreatedAsc,
-    onSortCreatedDesc
+    onSortCreatedDesc,
+    searchFieldText,
+    query
   } = props;
 
   return (
@@ -19,7 +22,11 @@ const EditStudents = props => {
       <CssBaseline>
         <Grid container display="flex" direction="column" alignItems="center">
           <Grid item>
-            <Typography variant="h3">Edit Students</Typography>
+            <SearchField
+              searchFieldText={searchFieldText}
+              students={students}
+              query={query}
+            />
           </Grid>
 
           <ButtonGroup
