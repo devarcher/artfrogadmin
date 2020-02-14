@@ -1,13 +1,13 @@
 import React from 'react';
-import StudentCard from './StudentCard';
-import ButtonGroup from '../SingleComponents/ButtonGroupStudents';
+import SectionsCard from './SectionsCard';
+import ButtonGroup from '../SingleComponents/ButtonGroupSections';
 import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
 import { Grid, CssBaseline } from '@material-ui/core';
-const EditStudents = props => {
+const EditSections = props => {
   const {
-    students,
+    sections,
     onUpdatedDataBase,
     onSortNameAsc,
     onSortNameDesc,
@@ -24,7 +24,7 @@ const EditStudents = props => {
           <Grid item>
             <SearchField
               searchFieldText={searchFieldText}
-              students={students}
+              sections={sections}
               query={query}
             />
           </Grid>
@@ -34,13 +34,13 @@ const EditStudents = props => {
             onSortNameDesc={onSortNameDesc}
             onSortCreatedAsc={onSortCreatedAsc}
             onSortCreatedDesc={onSortCreatedDesc}
-            students={students}
+            sections={sections}
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
-            {students.map(student => (
-              <StudentCard
-                key={student.id}
-                students={student}
+            {sections.map(section => (
+              <SectionsCard
+                key={section.id}
+                sections={section}
                 onUpdatedDataBase={onUpdatedDataBase}
               />
             ))}
@@ -51,4 +51,4 @@ const EditStudents = props => {
   );
 };
 
-export default EditStudents;
+export default EditSections;

@@ -5,9 +5,9 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Navigation from './Components/Navigation/Navigation';
 import Login from './Components/Auth/Login';
 import Board from './Components/Board/BoardData';
-import Classes from './Components/Classes/Classes';
+import Sections from './Components/Sections/SectionsData';
 import Students from './Components/Students/StudentsData';
-import TeachersData from './Components/Teachers/TeachersData';
+import Teachers from './Components/Teachers/TeachersData';
 import Panel from './Components/Panel';
 
 // Material UI
@@ -76,12 +76,9 @@ class App extends React.Component {
             />
             <this.ProtectedRoute exact path="/panel" component={Panel} />
             <this.ProtectedRoute path="/panel/board" component={Board} />
-            <this.ProtectedRoute path="/panel/classes" component={Classes} />
+            <this.ProtectedRoute path="/panel/classes" component={Sections} />
             <this.ProtectedRoute path="/panel/students" component={Students} />
-            <this.ProtectedRoute
-              path="/panel/teachers"
-              component={TeachersData}
-            />
+            <this.ProtectedRoute path="/panel/teachers" component={Teachers} />
             <Route path="/panel/*" component={() => '404 Not Found'} />
           </Switch>
         </ThemeProvider>

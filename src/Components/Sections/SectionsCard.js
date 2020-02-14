@@ -28,9 +28,9 @@ const useStyles = makeStyles({
   }
 });
 
-const StudentCard = props => {
-  const { students, onUpdatedDataBase } = props;
-
+const SectionsCard = props => {
+  const { sections, onUpdatedDataBase } = props;
+  console.log(sections)
   const classes = useStyles();
 
   // Edit State
@@ -38,72 +38,42 @@ const StudentCard = props => {
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
 
   // Local Teacher Info State
-  const [student, setStudent] = useState({
-    first_name: students.first_name,
-    last_name: students.last_name,
-    guardian_first_name: students.guardian_first_name,
-    guardian_last_name: students.guardian_last_name,
-    student_DOB: students.student_DOB,
-    phone: students.phone,
-    email: students.email,
-    address: students.address,
-    city: students.city,
-    state: students.state,
-    zip: students.zip,
-    alt_first_name: students.alt_first_name,
-    alt_last_name: students.alt_last_name,
-    alt_phone: students.alt_phone,
-    photo_permission: students.photo_permission,
-    id: students.id
+  const [section, setSection] = useState({
+    class_id: sections.id,
+    class_name: sections.section_name,
+    description: sections.description,
+    date: sections.date,
+    start_time: sections.start_time,
+    end_time: sections.end_time
   });
 
   const cancelHandler = e => {
-    setStudent({
-      ...student,
-      first_name: students.first_name,
-      last_name: students.last_name,
-      guardian_first_name: students.guardian_first_name,
-      guardian_last_name: students.guardian_last_name,
-      student_DOB: students.student_DOB,
-      phone: students.phone,
-      email: students.email,
-      address: students.address,
-      city: students.city,
-      state: students.state,
-      zip: students.zip,
-      alt_first_name: students.alt_first_name,
-      alt_last_name: students.alt_last_name,
-      alt_phone: students.alt_phone,
-      photo_permission: students.photo_permission,
-      id: students.id
+    setSection({
+      ...section,
+      class_id: sections.id,
+      class_name: sections.section_name,
+      description: sections.description,
+      date: sections.date,
+      start_time: sections.start_time,
+      end_time: sections.end_time
     });
     toggleIsInEditMode();
   };
 
   const saveHandler = e => {
     const data = {
-      first_name: student.first_name,
-      last_name: student.last_name,
-      guardian_first_name: student.guardian_first_name,
-      guardian_last_name: student.guardian_last_name,
-      student_DOB: student.student_DOB,
-      phone: student.phone,
-      email: student.email,
-      address: student.address,
-      city: student.city,
-      state: student.state,
-      zip: student.zip,
-      alt_first_name: student.alt_first_name,
-      alt_last_name: student.alt_last_name,
-      alt_phone: student.alt_phone,
-      photo_permission: student.photo_permission,
-      id: student.id
+      class_id: section.id,
+      class_name: section.section_name,
+      description: section.description,
+      date: section.date,
+      start_time: section.start_time,
+      end_time: section.end_time
     };
     const dataJSON = JSON.stringify(data);
     // console.log('UPDATE SAVE: ', data);
     axios({
       method: 'put',
-      url: 'http://localhost:80/students',
+      url: 'http://localhost:80/classes',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -120,15 +90,15 @@ const StudentCard = props => {
   };
 
   const deleteHandler = e => {
-    const { id } = student;
+    const { id } = section;
     const data = {
-      id: id
+      class_id: id
     };
     const dataJSON = JSON.stringify(data);
 
     axios({
       method: 'delete',
-      url: 'http://localhost:80/students',
+      url: 'http://localhost:80/clasess',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -167,7 +137,7 @@ const StudentCard = props => {
               flexGrow={1}
             >
               <Typography variant="h4">
-                {students.first_name} {students.last_name}
+                {sections.section_name} {sections.date} {sections.start_time}
               </Typography>
             </Box>
           </ExpansionPanelSummary>
@@ -182,7 +152,7 @@ const StudentCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>First Name: </strong>
+                      <strong>Class Name: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
@@ -190,9 +160,9 @@ const StudentCard = props => {
                       label="First Name"
                       variant="outlined"
                       autoFocus={true}
-                      value={student.first_name}
+                      value={section.class_name}
                       onChange={e =>
-                        setStudent({ ...student, first_name: e.target.value })
+                        setSection({ ...section, class_name: e.target.value })
                       }
                     />
                   </Box>
@@ -206,16 +176,18 @@ const StudentCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>First Name: </strong>
+                      <strong>Class Name: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.first_name}</Typography>
+                    <Typography variant="h6">
+                      {sections.section_name}
+                    </Typography>
                   </Box>
                 </Box>
               )}
 
-              {isInEditMode ? (
+              {/* {isInEditMode ? (
                 <Box
                   p={1}
                   display="flex"
@@ -224,7 +196,7 @@ const StudentCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Last Name: </strong>
+                      <strong>First Name: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
@@ -233,7 +205,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.last_name}
                       onChange={e =>
-                        setStudent({ ...student, last_name: e.target.value })
+                        setSection({ ...student, last_name: e.target.value })
                       }
                     />
                   </Box>
@@ -274,7 +246,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.guardian_first_name || ''}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           guardian_first_name: e.target.value
                         })
@@ -320,7 +292,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.guardian_last_name || ''}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           guardian_last_name: e.target.value
                         })
@@ -366,7 +338,7 @@ const StudentCard = props => {
                       type="date"
                       value={student.student_DOB || ''}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           student_DOB: e.target.value
                         })
@@ -410,7 +382,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.phone}
                       onChange={e =>
-                        setStudent({ ...student, phone: e.target.value })
+                        setSection({ ...student, phone: e.target.value })
                       }
                     />
                   </Box>
@@ -451,7 +423,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.email}
                       onChange={e =>
-                        setStudent({ ...student, email: e.target.value })
+                        setSection({ ...student, email: e.target.value })
                       }
                     />
                   </Box>
@@ -492,7 +464,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.address}
                       onChange={e =>
-                        setStudent({ ...student, address: e.target.value })
+                        setSection({ ...student, address: e.target.value })
                       }
                     />
                   </Box>
@@ -533,7 +505,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.city}
                       onChange={e =>
-                        setStudent({ ...student, city: e.target.value })
+                        setSection({ ...student, city: e.target.value })
                       }
                     />
                   </Box>
@@ -574,7 +546,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.state}
                       onChange={e =>
-                        setStudent({ ...student, state: e.target.value })
+                        setSection({ ...student, state: e.target.value })
                       }
                     />
                   </Box>
@@ -615,7 +587,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.zip}
                       onChange={e =>
-                        setStudent({ ...student, zip: e.target.value })
+                        setSection({ ...student, zip: e.target.value })
                       }
                     />
                   </Box>
@@ -656,7 +628,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.alt_first_name}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           alt_first_name: e.target.value
                         })
@@ -702,7 +674,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.alt_last_name}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           alt_last_name: e.target.value
                         })
@@ -748,7 +720,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.alt_phone}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           alt_phone: e.target.value
                         })
@@ -792,7 +764,7 @@ const StudentCard = props => {
                       variant="outlined"
                       value={student.photo_permission}
                       onChange={e =>
-                        setStudent({
+                        setSection({
                           ...student,
                           photo_permission: e.target.value
                         })
@@ -872,7 +844,7 @@ const StudentCard = props => {
                     Delete {students.first_name} {students.last_name}
                   </Button>
                 </Box>
-              )}
+              )} */}
             </form>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -881,4 +853,4 @@ const StudentCard = props => {
   );
 };
 
-export default StudentCard;
+export default SectionsCard;

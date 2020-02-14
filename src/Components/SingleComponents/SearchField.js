@@ -23,7 +23,7 @@ export default function SearchField(props) {
           className={classes.root}
           id="input-with-icon-textfield"
           label="Search"
-          placeholder="Student Name"
+          placeholder="Last Name"
           value={query}
           onChange={e => searchFieldText(e)}
           InputProps={{

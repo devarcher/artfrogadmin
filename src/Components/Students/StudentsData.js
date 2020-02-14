@@ -1,5 +1,5 @@
 import React from 'react';
-import EditStudents from '../Students/EditStudents';
+import EditStudents from './EditStudents';
 import moment from 'moment';
 
 class StudentsData extends React.Component {
@@ -18,6 +18,7 @@ class StudentsData extends React.Component {
 
   async fetchStudents() {
     try {
+      // const query = xyz
       const url = 'http://localhost:80/students';
       const response = await fetch(url);
       const data = await response.json();
@@ -122,14 +123,14 @@ class StudentsData extends React.Component {
   render() {
     const { students, query } = this.state;
 
-    // let newStudents = students.filter(student => {
-    //   return student.indexOf(query) !== -1;
-    // });
+    let filteredStudents = students.filter(student => {
+      return student.last_name.indexOf(this.state.query) !== -1;
+    });
 
     return (
       <div>
         <EditStudents
-          students={students}
+          students={filteredStudents}
           onUpdatedDataBase={this.onUpdatedDataBase}
           onSortNameAsc={this.onSortNameAsc}
           onSortNameDesc={this.onSortNameDesc}
