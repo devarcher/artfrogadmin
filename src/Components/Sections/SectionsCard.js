@@ -188,46 +188,49 @@ const SectionsCard = props => {
                   display="flex"
                   alignItems="center"
                   borderBottom="1px solid grey"
+                  flexGrow={1}
                 >
-                  <Box marginRight="10px">
+                  <Box
+                    flexGrow={1}
+                    marginRight="10px"
+                    textAlign="left"
+                    marginBottom="2px"
+                  >
                     <Typography variant="h6">
                       <strong>Description: </strong>
                     </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      multiline={true}
-                      rows={3}
-                      fullWidth={true}
-                      label="Description"
-                      variant="outlined"
-                      value={section.description}
-                      onChange={e =>
-                        setSection({ ...section, description: e.target.value })
-                      }
-                    />
+                    <Box textAlign="left">
+                      <TextField
+                        multiline={true}
+                        fullWidth={true}
+                        label="Description"
+                        variant="outlined"
+                        value={section.description}
+                        onChange={e =>
+                          setSection({
+                            ...section,
+                            description: e.target.value
+                          })
+                        }
+                      />
+                    </Box>
                   </Box>
                 </Box>
               ) : (
                 <Box
                   p={1}
                   display="flex"
-                  alignItems="center"
+                  direction="column"
+                  alignItems="flex-start"
                   borderBottom="1px solid grey"
                 >
-                  <Box marginRight="10px">
+                  <Box marginRight="10px" textAlign="left">
                     <Typography variant="h6">
                       <strong>Description: </strong>
                     </Typography>
-                  </Box>
-                  <Box
-                    flexGrow={1}
-                    textAlign="left"
-                    multiline={true}
-                    rows={3}
-                    fullWidth={true}
-                  >
-                    <Typography variant="h6">{sections.description}</Typography>
+                    <Box variant="h6" flexGrow={1} textAlign="left">
+                      <Typography>{sections.description}</Typography>
+                    </Box>
                   </Box>
                 </Box>
               )}
