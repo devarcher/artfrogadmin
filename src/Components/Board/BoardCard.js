@@ -283,15 +283,6 @@ const BoardCard = props => {
                   >
                     Save
                   </Button>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={classes.button}
-                  >
-                    Delete {board.first_name} {board.last_name}
-                  </Button>
                 </Box>
               ) : (
                 <Box padding={2} display="flex" flexDirection="column">

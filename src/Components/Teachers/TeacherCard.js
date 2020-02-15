@@ -283,15 +283,6 @@ const TeacherCard = props => {
                   >
                     Save
                   </Button>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={classes.button}
-                  >
-                    Delete {teachers.first_name} {teachers.last_name}
-                  </Button>
                 </Box>
               ) : (
                 <Box padding={2} display="flex" flexDirection="column">

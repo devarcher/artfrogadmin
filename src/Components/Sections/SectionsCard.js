@@ -195,6 +195,7 @@ const SectionsCard = props => {
                     marginRight="10px"
                     textAlign="left"
                     marginBottom="2px"
+                    spacing={2}
                   >
                     <Typography variant="h6">
                       <strong>Description: </strong>
@@ -373,15 +374,6 @@ const SectionsCard = props => {
                     onClick={saveHandler}
                   >
                     Save
-                  </Button>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    className={classes.button}
-                  >
-                    Delete {section.class_name}
                   </Button>
                 </Box>
               ) : (
