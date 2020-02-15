@@ -42,8 +42,8 @@ class SectionsData extends React.Component {
   onSortNameAsc = () => {
     let newSections = [...this.state.sections];
     newSections.sort(function(a, b) {
-      let nameA = a.last_name.toLowerCase();
-      let nameB = b.last_name.toLowerCase();
+      let nameA = a.section_name.toLowerCase();
+      let nameB = b.section_name.toLowerCase();
       if (nameA > nameB) {
         return 1;
       }
@@ -59,8 +59,8 @@ class SectionsData extends React.Component {
   onSortNameDesc = () => {
     let newSections = [...this.state.sections];
     newSections.sort(function(a, b) {
-      let nameA = a.last_name.toLowerCase();
-      let nameB = b.last_name.toLowerCase();
+      let nameA = a.date.toLowerCase();
+      let nameB = b.date.toLowerCase();
       if (nameA < nameB) {
         return 1;
       }
