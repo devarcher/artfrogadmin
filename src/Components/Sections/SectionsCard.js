@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import axios from 'axios';
 
 import {
@@ -30,14 +31,14 @@ const useStyles = makeStyles({
 
 const SectionsCard = props => {
   const { sections, onUpdatedDataBase } = props;
-  console.log(sections)
+  console.log(sections);
   const classes = useStyles();
 
   // Edit State
   const [isInEditMode, setIsInEditMode] = useState(false);
   const toggleIsInEditMode = () => setIsInEditMode(!isInEditMode);
 
-  // Local Teacher Info State
+  // Local Section Info State
   const [section, setSection] = useState({
     class_id: sections.id,
     class_name: sections.section_name,
@@ -62,15 +63,15 @@ const SectionsCard = props => {
 
   const saveHandler = e => {
     const data = {
-      class_id: section.id,
-      class_name: section.section_name,
+      class_id: section.class_id,
+      class_name: section.class_name,
       description: section.description,
-      date: section.date,
+      date: moment(section.date).format('YYYY-MM-DD'),
       start_time: section.start_time,
       end_time: section.end_time
     };
     const dataJSON = JSON.stringify(data);
-    // console.log('UPDATE SAVE: ', data);
+    console.log('UPDATE SAVE: ', data);
     axios({
       method: 'put',
       url: 'http://localhost:80/classes',
@@ -98,7 +99,7 @@ const SectionsCard = props => {
 
     axios({
       method: 'delete',
-      url: 'http://localhost:80/clasess',
+      url: 'http://localhost:80/classes',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -112,11 +113,6 @@ const SectionsCard = props => {
         console.log(error);
       });
   };
-
-  // Able to map Inputs dynamically?
-  // {Object.entries(student).map(([key, value]) => (
-  //   <div key={student.id}></div>
-  // ))}
 
   return (
     <>
@@ -137,7 +133,8 @@ const SectionsCard = props => {
               flexGrow={1}
             >
               <Typography variant="h4">
-                {sections.section_name} {sections.date} {sections.start_time}
+                {sections.section_name} || Start: {sections.date} || Time:{' '}
+                {sections.start_time || 'None Given'}
               </Typography>
             </Box>
           </ExpansionPanelSummary>
@@ -157,7 +154,7 @@ const SectionsCard = props => {
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      label="First Name"
+                      label="Class Name"
                       variant="outlined"
                       autoFocus={true}
                       value={section.class_name}
@@ -186,48 +183,6 @@ const SectionsCard = props => {
                   </Box>
                 </Box>
               )}
-
-              {/* {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>First Name: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Last Name"
-                      variant="outlined"
-                      value={student.last_name}
-                      onChange={e =>
-                        setSection({ ...student, last_name: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Last Name: </strong>
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="h6">{students.last_name}</Typography>
-                  </Box>
-                </Box>
-              )}
-
               {isInEditMode ? (
                 <Box
                   p={1}
@@ -237,19 +192,19 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Guardian First: </strong>
+                      <strong>Description: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      label="First Name"
+                      multiline={true}
+                      rows={3}
+                      fullWidth={true}
+                      label="Description"
                       variant="outlined"
-                      value={student.guardian_first_name || ''}
+                      value={section.description}
                       onChange={e =>
-                        setSection({
-                          ...student,
-                          guardian_first_name: e.target.value
-                        })
+                        setSection({ ...section, description: e.target.value })
                       }
                     />
                   </Box>
@@ -263,17 +218,20 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Guardian First: </strong>
+                      <strong>Description: </strong>
                     </Typography>
                   </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">
-                      {students.guardian_first_name}
-                    </Typography>
+                  <Box
+                    flexGrow={1}
+                    textAlign="left"
+                    multiline={true}
+                    rows={3}
+                    fullWidth={true}
+                  >
+                    <Typography variant="h6">{sections.description}</Typography>
                   </Box>
                 </Box>
               )}
-
               {isInEditMode ? (
                 <Box
                   p={1}
@@ -283,19 +241,16 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Guardian Last: </strong>
+                      <strong>Start Date: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      label="Last Name"
+                      label="Date"
                       variant="outlined"
-                      value={student.guardian_last_name || ''}
+                      value={section.date}
                       onChange={e =>
-                        setSection({
-                          ...student,
-                          guardian_last_name: e.target.value
-                        })
+                        setSection({ ...section, date: e.target.value })
                       }
                     />
                   </Box>
@@ -309,17 +264,14 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Guardian Last: </strong>
+                      <strong>Date: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">
-                      {students.guardian_last_name}
-                    </Typography>
+                    <Typography variant="h6">{sections.date}</Typography>
                   </Box>
                 </Box>
               )}
-
               {isInEditMode ? (
                 <Box
                   p={1}
@@ -329,19 +281,16 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Student DOB: </strong>
+                      <strong>Start Time: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
+                      label="Start Time"
                       variant="outlined"
-                      type="date"
-                      value={student.student_DOB || ''}
+                      value={section.start_time}
                       onChange={e =>
-                        setSection({
-                          ...student,
-                          student_DOB: e.target.value
-                        })
+                        setSection({ ...section, start_time: e.target.value })
                       }
                     />
                   </Box>
@@ -355,15 +304,14 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Student DOB: </strong>
+                      <strong>Start Time: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.student_DOB}</Typography>
+                    <Typography variant="h6">{sections.start_time}</Typography>
                   </Box>
                 </Box>
               )}
-
               {isInEditMode ? (
                 <Box
                   p={1}
@@ -373,16 +321,16 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Phone: </strong>
+                      <strong>End Time: </strong>
                     </Typography>
                   </Box>
                   <Box flexGrow={1} textAlign="left">
                     <TextField
-                      label="Phone"
+                      label="End Time"
                       variant="outlined"
-                      value={student.phone}
+                      value={section.end_time}
                       onChange={e =>
-                        setSection({ ...student, phone: e.target.value })
+                        setSection({ ...section, end_time: e.target.value })
                       }
                     />
                   </Box>
@@ -396,402 +344,14 @@ const SectionsCard = props => {
                 >
                   <Box marginRight="10px">
                     <Typography variant="h6">
-                      <strong>Phone: </strong>
+                      <strong>End Time: </strong>
                     </Typography>
                   </Box>
-                  <Box>
-                    <Typography variant="h6">{students.phone}</Typography>
+                  <Box flexGrow={1} textAlign="left">
+                    <Typography variant="h6">{sections.end_time}</Typography>
                   </Box>
                 </Box>
               )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Email: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Email"
-                      variant="outlined"
-                      value={student.email}
-                      onChange={e =>
-                        setSection({ ...student, email: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Email: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.email}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Address: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Address"
-                      variant="outlined"
-                      value={student.address}
-                      onChange={e =>
-                        setSection({ ...student, address: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Address: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.address}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>City: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="City"
-                      variant="outlined"
-                      value={student.city}
-                      onChange={e =>
-                        setSection({ ...student, city: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>City: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.city}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>State: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="State"
-                      variant="outlined"
-                      value={student.state}
-                      onChange={e =>
-                        setSection({ ...student, state: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>State: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.state}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Zip: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Zip"
-                      variant="outlined"
-                      value={student.zip}
-                      onChange={e =>
-                        setSection({ ...student, zip: e.target.value })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Zip: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.zip}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt First: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Alt First"
-                      variant="outlined"
-                      value={student.alt_first_name}
-                      onChange={e =>
-                        setSection({
-                          ...student,
-                          alt_first_name: e.target.value
-                        })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt First: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">
-                      {students.alt_first_name}
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt Last: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Alt Last"
-                      variant="outlined"
-                      value={student.alt_last_name}
-                      onChange={e =>
-                        setSection({
-                          ...student,
-                          alt_last_name: e.target.value
-                        })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt Last: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">
-                      {students.alt_last_name}
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt Phone: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Alt Phone"
-                      variant="outlined"
-                      value={student.alt_phone}
-                      onChange={e =>
-                        setSection({
-                          ...student,
-                          alt_phone: e.target.value
-                        })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Alt Phone: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">{students.alt_phone}</Typography>
-                  </Box>
-                </Box>
-              )}
-
-              {isInEditMode ? (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Photo Perm: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <TextField
-                      label="Photo Perm"
-                      variant="outlined"
-                      value={student.photo_permission}
-                      onChange={e =>
-                        setSection({
-                          ...student,
-                          photo_permission: e.target.value
-                        })
-                      }
-                    />
-                  </Box>
-                </Box>
-              ) : (
-                <Box
-                  p={1}
-                  display="flex"
-                  alignItems="center"
-                  borderBottom="1px solid grey"
-                >
-                  <Box marginRight="10px">
-                    <Typography variant="h6">
-                      <strong>Photo Perm: </strong>
-                    </Typography>
-                  </Box>
-                  <Box flexGrow={1} textAlign="left">
-                    <Typography variant="h6">
-                      {students.photo_permission}
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-
               {isInEditMode ? (
                 <Box padding={2} display="flex" flexDirection="column">
                   <Button
@@ -819,7 +379,7 @@ const SectionsCard = props => {
                     startIcon={<DeleteIcon />}
                     className={classes.button}
                   >
-                    Delete {students.first_name} {students.last_name}
+                    Delete {section.class_name}
                   </Button>
                 </Box>
               ) : (
@@ -841,10 +401,10 @@ const SectionsCard = props => {
                     className={classes.button}
                     onClick={deleteHandler}
                   >
-                    Delete {students.first_name} {students.last_name}
+                    Delete {section.class_name}
                   </Button>
                 </Box>
-              )} */}
+              )}
             </form>
           </ExpansionPanelDetails>
         </ExpansionPanel>

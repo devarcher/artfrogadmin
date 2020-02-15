@@ -1,4 +1,5 @@
 import React from 'react';
+import AddSection from './AddSection';
 import SectionsCard from './SectionsCard';
 import ButtonGroup from '../SingleComponents/ButtonGroupSections';
 import SearchField from '../SingleComponents/SearchField';
@@ -37,6 +38,7 @@ const EditSections = props => {
             sections={sections}
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
+            <AddSection onUpdatedDataBase={onUpdatedDataBase} />
             {sections.map(section => (
               <SectionsCard
                 key={section.id}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 // Material UI
 import {
@@ -26,26 +27,30 @@ const useStyles = makeStyles({
   }
 });
 
-const AddTeacher = props => {
+const AddSection = props => {
   const { onUpdatedDataBase } = props;
   const classes = useStyles();
 
+  // Local Section Info State
   const [section, setSection] = useState({
-    first_name: '',
-    last_name: '',
-    bio: ''
+    class_id: '',
+    class_name: '',
+    description: '',
+    date: '',
+    start_time: '',
+    end_time: ''
   });
 
   const saveHandler = e => {
-    const { first_name, last_name, bio } = teacher;
     const data = {
-      first_name: first_name,
-      last_name: last_name,
-      bio: bio
+      class_name: section.class_name,
+      description: section.description,
+      date: moment(section.date).format('YYYY-MM-DD'),
+      start_time: section.start_time,
+      end_time: section.end_time
     };
     const dataJSON = JSON.stringify(data);
-    console.log(data);
-
+    console.log('UPDATE SAVE: ', data);
     axios({
       method: 'post',
       url: 'http://localhost:80/classes',
@@ -56,7 +61,6 @@ const AddTeacher = props => {
     })
       .then(function(response) {
         console.log(response);
-        setTeacher({ first_name: '', last_name: '', bio: '' });
         onUpdatedDataBase();
       })
       .catch(function(error) {
@@ -82,10 +86,10 @@ const AddTeacher = props => {
               justifyContent="center"
               flexGrow={1}
             >
-              <Typography variant="h4">Add New Teacher</Typography>
+              <Typography variant="h4">Add A Class</Typography>
             </Box>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails display="flex">
             <form className={classes.form} noValidate autoComplete="off">
               <Box
                 p={1}
@@ -95,43 +99,18 @@ const AddTeacher = props => {
               >
                 <Box marginRight="10px">
                   <Typography variant="h6">
-                    <strong>First Name: </strong>
+                    <strong>Class Name: </strong>
                   </Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="left">
                   <TextField
-                    label="First Name"
+                    label="Class Name"
                     variant="outlined"
                     autoFocus={true}
-                    value={teacher.first_name}
+                    value={section.class_name}
                     onChange={e =>
-                      setTeacher({ ...teacher, first_name: e.target.value })
+                      setSection({ ...section, class_name: e.target.value })
                     }
-                    placeholder="First Name"
-                  />
-                </Box>
-              </Box>
-              <Box
-                p={1}
-                display="flex"
-                alignItems="center"
-                borderBottom="1px solid grey"
-              >
-                <Box marginRight="10px">
-                  <Typography variant="h6">
-                    <strong>Last Name: </strong>
-                  </Typography>
-                </Box>
-                <Box flexGrow={1} textAlign="left">
-                  <TextField
-                    label="Last Name"
-                    variant="outlined"
-                    autoFocus={true}
-                    value={teacher.last_name}
-                    onChange={e =>
-                      setTeacher({ ...teacher, last_name: e.target.value })
-                    }
-                    placeholder="Last Name"
                   />
                 </Box>
               </Box>
@@ -141,42 +120,105 @@ const AddTeacher = props => {
                 display="flex"
                 alignItems="center"
                 borderBottom="1px solid grey"
-                className={classes.bioBox}
-                flexGrow={1}
               >
                 <Box marginRight="10px">
                   <Typography variant="h6">
-                    <strong>Bio: </strong>
+                    <strong>Description: </strong>
                   </Typography>
                 </Box>
                 <Box flexGrow={1} textAlign="left">
                   <TextField
                     multiline={true}
                     rows={3}
-                    fullWidth
-                    className={classes.bioSection}
-                    label="Bio"
+                    fullWidth={true}
+                    label="Description"
                     variant="outlined"
-                    autoFocus={true}
-                    value={teacher.bio}
+                    value={section.description}
                     onChange={e =>
-                      setTeacher({ ...teacher, bio: e.target.value })
+                      setSection({ ...section, description: e.target.value })
                     }
-                    placeholder="Bio"
                   />
                 </Box>
               </Box>
 
-              <Box padding={2}>
+              <Box
+                p={1}
+                display="flex"
+                alignItems="center"
+                borderBottom="1px solid grey"
+              >
+                <Box marginRight="10px">
+                  <Typography variant="h6">
+                    <strong>Start Date: </strong>
+                  </Typography>
+                </Box>
+                <Box flexGrow={1} textAlign="left">
+                  <TextField
+                    label="Date"
+                    variant="outlined"
+                    value={section.date}
+                    onChange={e =>
+                      setSection({ ...section, date: e.target.value })
+                    }
+                  />
+                </Box>
+              </Box>
+
+              <Box
+                p={1}
+                display="flex"
+                alignItems="center"
+                borderBottom="1px solid grey"
+              >
+                <Box marginRight="10px">
+                  <Typography variant="h6">
+                    <strong>Start Time: </strong>
+                  </Typography>
+                </Box>
+                <Box flexGrow={1} textAlign="left">
+                  <TextField
+                    label="Start Time"
+                    variant="outlined"
+                    value={section.start_time}
+                    onChange={e =>
+                      setSection({ ...section, start_time: e.target.value })
+                    }
+                  />
+                </Box>
+              </Box>
+
+              <Box
+                p={1}
+                display="flex"
+                alignItems="center"
+                borderBottom="1px solid grey"
+              >
+                <Box marginRight="10px">
+                  <Typography variant="h6">
+                    <strong>End Time: </strong>
+                  </Typography>
+                </Box>
+                <Box flexGrow={1} textAlign="left">
+                  <TextField
+                    label="End Time"
+                    variant="outlined"
+                    value={section.end_time}
+                    onChange={e =>
+                      setSection({ ...section, end_time: e.target.value })
+                    }
+                  />
+                </Box>
+              </Box>
+
+              <Box padding={2} display="flex" flexDirection="column">
                 <Button
-                  size="large"
-                  variant="contained"
+                  variant="outlined"
                   color="secondary"
-                  startIcon={<SaveAltIcon />}
                   className={classes.button}
+                  startIcon={<SaveAltIcon />}
                   onClick={saveHandler}
                 >
-                  Save New Teacher
+                  Save
                 </Button>
               </Box>
             </form>
