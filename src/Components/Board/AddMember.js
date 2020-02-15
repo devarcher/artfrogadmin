@@ -176,7 +176,7 @@ const AddMember = props => {
                   className={classes.button}
                   onClick={saveHandler}
                 >
-                  Save New Teacher
+                  Save New Member
                 </Button>
               </Box>
             </form>

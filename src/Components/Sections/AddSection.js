@@ -62,6 +62,14 @@ const AddSection = props => {
       .then(function(response) {
         console.log(response);
         onUpdatedDataBase();
+        setSection({
+          class_id: '',
+          class_name: '',
+          description: '',
+          date: '',
+          start_time: '',
+          end_time: ''
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -154,8 +162,8 @@ const AddSection = props => {
                 </Box>
                 <Box flexGrow={1} textAlign="left">
                   <TextField
-                    label="Date"
                     variant="outlined"
+                    type="date"
                     value={section.date}
                     onChange={e =>
                       setSection({ ...section, date: e.target.value })
@@ -177,8 +185,8 @@ const AddSection = props => {
                 </Box>
                 <Box flexGrow={1} textAlign="left">
                   <TextField
-                    label="Start Time"
                     variant="outlined"
+                    type="time"
                     value={section.start_time}
                     onChange={e =>
                       setSection({ ...section, start_time: e.target.value })
@@ -200,8 +208,8 @@ const AddSection = props => {
                 </Box>
                 <Box flexGrow={1} textAlign="left">
                   <TextField
-                    label="End Time"
                     variant="outlined"
+                    type="time"
                     value={section.end_time}
                     onChange={e =>
                       setSection({ ...section, end_time: e.target.value })

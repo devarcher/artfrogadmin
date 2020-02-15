@@ -95,7 +95,7 @@ const SectionsCard = props => {
       class_id: section.class_id
     };
     const dataJSON = JSON.stringify(data);
-    // console.log(dataJSON);
+    // console.log(dataJSON);z
     axios({
       method: 'delete',
       url: 'http://localhost:80/classes',
