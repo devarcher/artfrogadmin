@@ -23,7 +23,7 @@ class SectionsData extends React.Component {
       const response = await fetch(url);
       // console.log('fetchSections response', response);
       const data = await response.json();
-      console.log('fetch data', data);
+      // console.log('fetch data', data);
       const sectionsData = data.classes.map(section => ({
         id: section.class_id,
         section_name: section.class_name,
