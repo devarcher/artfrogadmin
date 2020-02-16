@@ -148,8 +148,8 @@ const SectionsCard = props => {
               borderRadius="8px"
               padding={3}
               display="flex"
-              justifyContent='space-around'
-              alignItems='center'
+              justifyContent="space-around"
+              alignItems="center"
               flexGrow={1}
               flexWrap="wrap"
             >
@@ -158,14 +158,7 @@ const SectionsCard = props => {
               </Box>
 
               <Box>
-                <Typography
-                  display="flex"
-                  flexBasis="70%"
-                  justifyContent="center"
-                  variant="h6"
-                >
-                  Date: {sections.date}
-                </Typography>
+                <Typography variant="h6">Date: {sections.date}</Typography>
                 <Typography variant="h6">
                   Start Time: {sections.start_time || 'None Given'}
                 </Typography>

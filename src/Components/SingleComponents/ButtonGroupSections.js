@@ -6,9 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   box: {
     display: 'flex',
+    flexGrow: '1',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    margin: '15px'
+    margin: '20px'
   }
 });
 
