@@ -148,13 +148,28 @@ const SectionsCard = props => {
               borderRadius="8px"
               padding={3}
               display="flex"
-              justifyContent="center"
+              justifyContent='space-around'
+              alignItems='center'
               flexGrow={1}
+              flexWrap="wrap"
             >
-              <Typography variant="h4">
-                {sections.section_name} || Start: {sections.date} || Time:{' '}
-                {sections.start_time || 'None Given'}
-              </Typography>
+              <Box display="flex" flexBasis="10%" justifyContent="flex-end">
+                <Typography variant="h4">{sections.section_name}</Typography>
+              </Box>
+
+              <Box>
+                <Typography
+                  display="flex"
+                  flexBasis="70%"
+                  justifyContent="center"
+                  variant="h6"
+                >
+                  Date: {sections.date}
+                </Typography>
+                <Typography variant="h6">
+                  Start Time: {sections.start_time || 'None Given'}
+                </Typography>
+              </Box>
             </Box>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails display="flex">
