@@ -12,8 +12,16 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
-    height: 150,
+    height: 120,
     width: 240
+  },
+  top: {
+    borderBottom: '1px solid #DC6866',
+    backgroundColor: '#679488',
+    color: 'white'
+  },
+  bottom: {
+    marginTop: '20px'
   }
 }));
 
@@ -39,9 +47,12 @@ function Panel() {
           lg={4}
           xl={4}
         >
-          <Paper display="flex" className={classes.paper}>
-            <Typography variant="h5">
-              Welcome to your Admin Panel. Navigate with the Links above!
+          <Paper number={5} className={classes.paper}>
+            <Typography className={classes.top} variant="h5">
+              Admin Panel
+            </Typography>
+            <Typography align="center" className={classes.bottom} variant="h6">
+              Navigate with Menu
             </Typography>
           </Paper>
         </Grid>

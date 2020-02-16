@@ -11,9 +11,15 @@ const EditBoard = props => {
   return (
     <div>
       <CssBaseline>
-        <Grid container display="flex" direction="column" alignItems="center">
+        <Grid
+          container
+          display="flex"
+          direction="column"
+          alignItems="center"
+          style={{ minHeight: '85vh', marginTop: '35px' }}
+        >
           <Grid item>
-            <Typography variant="h3">Edit Board</Typography>
+            <Typography variant="h4">Edit Board</Typography>
           </Grid>
 
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
