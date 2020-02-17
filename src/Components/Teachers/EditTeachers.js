@@ -5,7 +5,7 @@ import ButtonGroup from '../SingleComponents/ButtonGroup';
 import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
-import { Grid, CssBaseline } from '@material-ui/core';
+import { Grid, CssBaseline, Box, Paper, Typography } from '@material-ui/core';
 
 const EditTeachers = props => {
   const {
@@ -42,13 +42,26 @@ const EditTeachers = props => {
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddTeacher onUpdatedDataBase={onUpdatedDataBase} />
-            {teachers.map(teacher => (
-              <TeacherCard
-                key={teacher.id}
-                teachers={teacher}
-                onUpdatedDataBase={onUpdatedDataBase}
-              />
-            ))}
+
+            {teachers.length > 0 ? (
+              <>
+                {teachers.map(teacher => (
+                  <TeacherCard
+                    key={teacher.id}
+                    teachers={teacher}
+                    onUpdatedDataBase={onUpdatedDataBase}
+                  />
+                ))}
+              </>
+            ) : (
+              <Box marginTop="30px">
+                <Paper elevation={4}>
+                  <Typography variant="h5">
+                    No results. Try your Search Again
+                  </Typography>
+                </Paper>
+              </Box>
+            )}
           </Grid>
         </Grid>
       </CssBaseline>

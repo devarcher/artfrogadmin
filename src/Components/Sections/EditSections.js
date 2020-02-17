@@ -5,7 +5,7 @@ import ButtonGroup from '../SingleComponents/ButtonGroupSections';
 import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
-import { Grid, CssBaseline } from '@material-ui/core';
+import { Grid, CssBaseline, Box, Paper, Typography } from '@material-ui/core';
 const EditSections = props => {
   const {
     sections,
@@ -42,13 +42,26 @@ const EditSections = props => {
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddSection onUpdatedDataBase={onUpdatedDataBase} />
-            {sections.map(section => (
-              <SectionsCard
-                key={section.id}
-                sections={section}
-                onUpdatedDataBase={onUpdatedDataBase}
-              />
-            ))}
+
+            {sections.length > 0 ? (
+              <>
+                {sections.map(section => (
+                  <SectionsCard
+                    key={section.id}
+                    sections={section}
+                    onUpdatedDataBase={onUpdatedDataBase}
+                  />
+                ))}
+              </>
+            ) : (
+              <Box marginTop="30px">
+                <Paper elevation={4}>
+                  <Typography variant="h5">
+                    No results. Try your Search Again
+                  </Typography>
+                </Paper>
+              </Box>
+            )}
           </Grid>
         </Grid>
       </CssBaseline>
