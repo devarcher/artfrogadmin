@@ -19,7 +19,8 @@ export default function SortButtons(props) {
     onSortNameAsc,
     onSortNameDesc,
     onSortCreatedAsc,
-    onSortCreatedDesc
+    onSortCreatedDesc,
+    onUpdatedDataBase
   } = props;
 
   return (
@@ -29,6 +30,7 @@ export default function SortButtons(props) {
         <Button onClick={onSortNameDesc}>Class Date ↑</Button>
         <Button onClick={onSortCreatedAsc}>Created ↑</Button>
         <Button onClick={onSortCreatedDesc}>Created ↓</Button>
+        <Button onClick={onUpdatedDataBase}>Reload</Button>
       </ButtonGroup>
     </div>
   );

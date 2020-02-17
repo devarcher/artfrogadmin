@@ -36,6 +36,7 @@ const EditSections = props => {
             onSortCreatedAsc={onSortCreatedAsc}
             onSortCreatedDesc={onSortCreatedDesc}
             sections={sections}
+            onUpdatedDataBase={onUpdatedDataBase}
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddSection onUpdatedDataBase={onUpdatedDataBase} />

@@ -19,6 +19,7 @@ export default function SortButtons(props) {
     onSortNameDesc,
     onSortCreatedAsc,
     onSortCreatedDesc,
+    onUpdatedDataBase,
     students
   } = props;
 
@@ -33,6 +34,7 @@ export default function SortButtons(props) {
         <Button onClick={onSortNameDesc}>Last Name ↓</Button>
         <Button onClick={onSortCreatedAsc}>Created ↑</Button>
         <Button onClick={onSortCreatedDesc}>Created ↓</Button>
+        <Button onClick={onUpdatedDataBase}>Reload</Button>
         <Button variant="outlined">
           <a
             style={{ textDecoration: 'none', color: '#DC6866' }}

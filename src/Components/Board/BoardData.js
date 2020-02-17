@@ -120,6 +120,7 @@ class BoardData extends React.Component {
       }));
       // console.log('board fetch: ', boardData);
       this.setState({ board: boardData });
+      this.setState({ query: '' });
     });
   };
 

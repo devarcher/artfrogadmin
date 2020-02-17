@@ -34,6 +34,7 @@ const EditStudents = props => {
             onSortNameDesc={onSortNameDesc}
             onSortCreatedAsc={onSortCreatedAsc}
             onSortCreatedDesc={onSortCreatedDesc}
+            onUpdatedDataBase={onUpdatedDataBase}
             students={students}
           />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
