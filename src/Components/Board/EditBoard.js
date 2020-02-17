@@ -16,7 +16,8 @@ const EditBoard = props => {
     onSortCreatedAsc,
     onSortCreatedDesc,
     searchFieldText,
-    query
+    query,
+    onSearchSubmit
   } = props;
 
   return (
@@ -27,6 +28,7 @@ const EditBoard = props => {
             searchFieldText={searchFieldText}
             board={board}
             query={query}
+            onSearchSubmit={onSearchSubmit}
           />
 
           <ButtonGroup

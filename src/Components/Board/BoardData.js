@@ -1,5 +1,6 @@
 import React from 'react';
 import EditBoard from './EditBoard';
+import axios from 'axios';
 
 class BoardData extends React.Component {
   state = {
@@ -106,6 +107,22 @@ class BoardData extends React.Component {
     this.setState({ query: e.target.value });
   };
 
+  onSearchSubmit = e => {
+    this.setState({ board: [] });
+    const search_query = this.state.query;
+    axios.get(`http://localhost:80/aboutQuery?q=${search_query}`).then(res => {
+      // console.log(res);
+      const boardData = res.data.board.map(member => ({
+        id: member.id,
+        first_name: member.first_name,
+        last_name: member.last_name,
+        bio: member.bio
+      }));
+      // console.log('board fetch: ', boardData);
+      this.setState({ board: boardData });
+    });
+  };
+
   render() {
     const { board, query } = this.state;
     // console.log('in render: ', board);
@@ -119,6 +136,7 @@ class BoardData extends React.Component {
           onSortCreatedAsc={this.onSortCreatedAsc}
           onSortCreatedDesc={this.onSortCreatedDesc}
           searchFieldText={this.searchFieldText}
+          onSearchSubmit={this.onSearchSubmit}
           query={query}
         />
         />

@@ -82,7 +82,7 @@ const AddMember = props => {
               justifyContent="center"
               flexGrow={1}
             >
-              <Typography variant="h4">Add New Board Member</Typography>
+              <Typography variant="h4">Add A Board Member</Typography>
             </Box>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>

@@ -82,7 +82,7 @@ const AddTeacher = props => {
               justifyContent="center"
               flexGrow={1}
             >
-              <Typography variant="h4">Add New Teacher</Typography>
+              <Typography variant="h4">Add A Teacher</Typography>
             </Box>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
