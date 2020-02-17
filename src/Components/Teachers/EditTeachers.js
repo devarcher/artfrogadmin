@@ -1,28 +1,42 @@
 import React from 'react';
 import TeacherCard from './TeacherCard';
 import AddTeacher from './AddTeacher';
-import { ReactComponent as Icon } from '../../Assets/AFLogo.svg';
+import ButtonGroup from '../SingleComponents/ButtonGroup';
+import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
-import { Grid, Typography, CssBaseline, Box } from '@material-ui/core';
+import { Grid, CssBaseline } from '@material-ui/core';
 
 const EditTeachers = props => {
-  const { teachers, onUpdatedDataBase } = props;
+  const {
+    teachers,
+    onUpdatedDataBase,
+    onSortNameAsc,
+    onSortNameDesc,
+    onSortCreatedAsc,
+    onSortCreatedDesc,
+    searchFieldText,
+    query
+  } = props;
 
   return (
     <div>
       <CssBaseline>
-        <Grid
-          container
-          display="flex"
-          direction="column"
-          alignItems="center"
-          style={{ minHeight: '85vh', marginTop: '35px' }}
-        >
+        <Grid container display="flex" direction="column" alignItems="center">
           <Grid item>
-            <Typography variant="h4">Edit Teachers</Typography>
+            <SearchField
+              searchFieldText={searchFieldText}
+              teachers={teachers}
+              query={query}
+            />
           </Grid>
 
+          <ButtonGroup
+            onSortNameAsc={onSortNameAsc}
+            onSortNameDesc={onSortNameDesc}
+            onSortCreatedAsc={onSortCreatedAsc}
+            onSortCreatedDesc={onSortCreatedDesc}
+          />
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddTeacher onUpdatedDataBase={onUpdatedDataBase} />
             {teachers.map(teacher => (

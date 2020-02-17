@@ -3,7 +3,8 @@ import EditTeachers from './EditTeachers';
 
 class TeachersData extends React.Component {
   state = {
-    teachers: []
+    teachers: [],
+    query: ''
   };
 
   componentDidMount() {
@@ -33,14 +34,92 @@ class TeachersData extends React.Component {
     }
   }
 
+  onSortNameAsc = () => {
+    let newTeachers = [...this.state.teachers];
+    newTeachers.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA > nameB) {
+        return 1;
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ teachers: newTeachers });
+  };
+
+  onSortNameDesc = () => {
+    let newTeachers = [...this.state.teachers];
+    newTeachers.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ teachers: newTeachers });
+  };
+
+  onSortCreatedAsc = () => {
+    let newTeachers = [...this.state.teachers];
+    newTeachers.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA > numB) {
+        return 1;
+      }
+      if (numA < numB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ teachers: newTeachers });
+  };
+
+  onSortCreatedDesc = () => {
+    let newTeachers = [...this.state.teachers];
+    newTeachers.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA < numB) {
+        return 1;
+      }
+      if (numA > numB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ teachers: newTeachers });
+  };
+
+  searchFieldText = e => {
+    this.setState({ query: e.target.value });
+  };
+
   render() {
-    const { teachers } = this.state;
+    const { teachers, query } = this.state;
     // console.log('in render: ', teachers);
     return (
       <div>
         <EditTeachers
           teachers={teachers}
           onUpdatedDataBase={this.onUpdatedDataBase}
+          onSortNameAsc={this.onSortNameAsc}
+          onSortNameDesc={this.onSortNameDesc}
+          onSortCreatedAsc={this.onSortCreatedAsc}
+          onSortCreatedDesc={this.onSortCreatedDesc}
+          searchFieldText={this.searchFieldText}
+          query={query}
         />
       </div>
     );

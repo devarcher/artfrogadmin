@@ -47,7 +47,7 @@ function Panel() {
           lg={4}
           xl={4}
         >
-          <Paper number={5} className={classes.paper}>
+          <Paper variant="outlined" className={classes.paper}>
             <Typography className={classes.top} variant="h5">
               Admin Panel
             </Typography>
