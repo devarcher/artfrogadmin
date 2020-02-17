@@ -1,5 +1,6 @@
 import React from 'react';
 import EditSections from '../Sections/EditSections';
+import axios from 'axios';
 import moment from 'moment';
 
 class SectionsData extends React.Component {
@@ -111,6 +112,27 @@ class SectionsData extends React.Component {
     this.setState({ query: e.target.value });
   };
 
+  onSearchSubmit = e => {
+    this.setState({ sections: [] });
+    const search_query = this.state.query;
+    axios
+      .get(`http://localhost:80/classesQuery?q=${search_query}`)
+      .then(res => {
+        console.log(res);
+        const sectionsData = res.data.classes.map(section => ({
+          id: section.class_id,
+          section_name: section.class_name,
+          description: section.description,
+          date: moment(section.date).format('MM-DD-YYYY'),
+          start_time: section.start_time,
+          end_time: section.end_time
+        }));
+        // console.log('board fetch: ', boardData);
+        this.setState({ sections: sectionsData });
+        this.setState({ query: '' });
+      });
+  };
+
   render() {
     const { sections, query } = this.state;
 
@@ -128,6 +150,7 @@ class SectionsData extends React.Component {
           onSortCreatedAsc={this.onSortCreatedAsc}
           onSortCreatedDesc={this.onSortCreatedDesc}
           searchFieldText={this.searchFieldText}
+          onSearchSubmit={this.onSearchSubmit}
           query={query}
         />
       </div>

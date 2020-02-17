@@ -1,5 +1,6 @@
 import React from 'react';
 import EditTeachers from './EditTeachers';
+import axios from 'axios';
 
 class TeachersData extends React.Component {
   state = {
@@ -106,6 +107,25 @@ class TeachersData extends React.Component {
     this.setState({ query: e.target.value });
   };
 
+  onSearchSubmit = e => {
+    this.setState({ teachers: [] });
+    const search_query = this.state.query;
+    axios
+      .get(`http://localhost:80/teachersQuery?q=${search_query}`)
+      .then(res => {
+        console.log(res);
+        const teachersData = res.data.teachers.map(teacher => ({
+          id: teacher.id,
+          first_name: teacher.first_name,
+          last_name: teacher.last_name,
+          bio: teacher.bio
+        }));
+        // console.log('board fetch: ', boardData);
+        this.setState({ teachers: teachersData });
+        this.setState({ query: '' });
+      });
+  };
+
   render() {
     const { teachers, query } = this.state;
     // console.log('in render: ', teachers);
@@ -119,6 +139,7 @@ class TeachersData extends React.Component {
           onSortCreatedAsc={this.onSortCreatedAsc}
           onSortCreatedDesc={this.onSortCreatedDesc}
           searchFieldText={this.searchFieldText}
+          onSearchSubmit={this.onSearchSubmit}
           query={query}
         />
       </div>

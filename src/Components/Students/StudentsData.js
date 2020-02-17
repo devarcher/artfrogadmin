@@ -1,5 +1,6 @@
 import React from 'react';
 import EditStudents from './EditStudents';
+import axios from 'axios';
 import moment from 'moment';
 
 class StudentsData extends React.Component {
@@ -18,7 +19,6 @@ class StudentsData extends React.Component {
 
   async fetchStudents() {
     try {
-      // const query = xyz
       const url = 'http://localhost:80/students';
       const response = await fetch(url);
       const data = await response.json();
@@ -120,23 +120,50 @@ class StudentsData extends React.Component {
     this.setState({ query: e.target.value });
   };
 
+  onSearchSubmit = e => {
+    this.setState({ students: [] });
+    const search_query = this.state.query;
+    axios
+      .get(`http://localhost:80/studentsQuery?q=${search_query}`)
+      .then(res => {
+        // console.log(res);
+        const studentsData = res.data.students.map(student => ({
+          id: student.id,
+          first_name: student.first_name,
+          last_name: student.last_name,
+          guardian_first_name: student.guardian_first_name,
+          guardian_last_name: student.guardian_last_name,
+          student_DOB: moment(student.student_DOB).format('MM-DD-YYYY'),
+          phone: student.phone,
+          email: student.email,
+          address: student.address,
+          city: student.city,
+          state: student.state,
+          zip: student.zip,
+          alt_first_name: student.alt_first_name,
+          alt_last_name: student.alt_last_name,
+          alt_phone: student.alt_phone,
+          photo_permission: student.photo_permission
+        }));
+        // console.log('board fetch: ', boardData);
+        this.setState({ students: studentsData });
+        this.setState({ query: '' });
+      });
+  };
+
   render() {
     const { students, query } = this.state;
-
-    let filteredStudents = students.filter(student => {
-      return student.last_name.indexOf(this.state.query) !== -1;
-    });
-
     return (
       <div>
         <EditStudents
-          students={filteredStudents}
+          students={students}
           onUpdatedDataBase={this.onUpdatedDataBase}
           onSortNameAsc={this.onSortNameAsc}
           onSortNameDesc={this.onSortNameDesc}
           onSortCreatedAsc={this.onSortCreatedAsc}
           onSortCreatedDesc={this.onSortCreatedDesc}
           searchFieldText={this.searchFieldText}
+          onSearchSubmit={this.onSearchSubmit}
           query={query}
         />
       </div>

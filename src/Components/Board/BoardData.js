@@ -140,7 +140,6 @@ class BoardData extends React.Component {
           onSearchSubmit={this.onSearchSubmit}
           query={query}
         />
-        />
       </div>
     );
   }

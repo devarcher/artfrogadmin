@@ -14,6 +14,7 @@ const EditStudents = props => {
     onSortCreatedAsc,
     onSortCreatedDesc,
     searchFieldText,
+    onSearchSubmit,
     query
   } = props;
 
@@ -26,6 +27,7 @@ const EditStudents = props => {
               searchFieldText={searchFieldText}
               students={students}
               query={query}
+              onSearchSubmit={onSearchSubmit}
             />
           </Grid>
 
