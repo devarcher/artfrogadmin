@@ -3,7 +3,8 @@ import EditBoard from './EditBoard';
 
 class BoardData extends React.Component {
   state = {
-    board: []
+    board: [],
+    query: ''
   };
 
   componentDidMount() {
@@ -33,12 +34,94 @@ class BoardData extends React.Component {
     }
   }
 
+  onSortNameAsc = () => {
+    let newBoard = [...this.state.board];
+    newBoard.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA > nameB) {
+        return 1;
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ board: newBoard });
+  };
+
+  onSortNameDesc = () => {
+    let newBoard = [...this.state.board];
+    newBoard.sort(function(a, b) {
+      let nameA = a.last_name.toLowerCase();
+      let nameB = b.last_name.toLowerCase();
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ board: newBoard });
+  };
+
+  onSortCreatedAsc = () => {
+    let newBoard = [...this.state.board];
+    newBoard.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA > numB) {
+        return 1;
+      }
+      if (numA < numB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ board: newBoard });
+  };
+
+  onSortCreatedDesc = () => {
+    let newBoard = [...this.state.board];
+    newBoard.sort(function(a, b) {
+      let numA = a.id;
+      let numB = b.id;
+      if (numA < numB) {
+        return 1;
+      }
+      if (numA > numB) {
+        return -1;
+      }
+      return 0;
+    });
+    // console.log(newStudents);
+    this.setState({ board: newBoard });
+  };
+
+  searchFieldText = e => {
+    this.setState({ query: e.target.value });
+  };
+
   render() {
-    const { board } = this.state;
+    const { board, query } = this.state;
     // console.log('in render: ', board);
     return (
       <div>
-        <EditBoard board={board} onUpdatedDataBase={this.onUpdatedDataBase} />
+        <EditBoard
+          board={board}
+          onUpdatedDataBase={this.onUpdatedDataBase}
+          onSortNameAsc={this.onSortNameAsc}
+          onSortNameDesc={this.onSortNameDesc}
+          onSortCreatedAsc={this.onSortCreatedAsc}
+          onSortCreatedDesc={this.onSortCreatedDesc}
+          searchFieldText={this.searchFieldText}
+          query={query}
+        />
+        />
       </div>
     );
   }

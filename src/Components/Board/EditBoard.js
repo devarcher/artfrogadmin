@@ -1,26 +1,40 @@
 import React from 'react';
 import BoardCard from './BoardCard';
 import AddMember from './AddMember';
+import ButtonGroup from '../SingleComponents/ButtonGroup';
+import SearchField from '../SingleComponents/SearchField';
 
 // Material UI
-import { Grid, Typography, CssBaseline } from '@material-ui/core';
+import { Grid, CssBaseline } from '@material-ui/core';
 
 const EditBoard = props => {
-  const { board, onUpdatedDataBase } = props;
+  const {
+    board,
+    onUpdatedDataBase,
+    onSortNameAsc,
+    onSortNameDesc,
+    onSortCreatedAsc,
+    onSortCreatedDesc,
+    searchFieldText,
+    query
+  } = props;
 
   return (
     <div>
       <CssBaseline>
-        <Grid
-          container
-          display="flex"
-          direction="column"
-          alignItems="center"
-          style={{ minHeight: '85vh', marginTop: '35px' }}
-        >
-          <Grid item>
-            <Typography variant="h4">Edit Board</Typography>
-          </Grid>
+        <Grid container display="flex" direction="column" alignItems="center">
+          <SearchField
+            searchFieldText={searchFieldText}
+            board={board}
+            query={query}
+          />
+
+          <ButtonGroup
+            onSortNameAsc={onSortNameAsc}
+            onSortNameDesc={onSortNameDesc}
+            onSortCreatedAsc={onSortCreatedAsc}
+            onSortCreatedDesc={onSortCreatedDesc}
+          />
 
           <Grid item align="center" xs={12} sm={10} md={8} lg={8} xl={8}>
             <AddMember onUpdatedDataBase={onUpdatedDataBase} />
